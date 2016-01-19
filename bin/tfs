@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+
+program
+  .usage('<cmd>')
+  .command('get', 'Get latest version file(s) recursively.');
+
+program.parse(process.argv);

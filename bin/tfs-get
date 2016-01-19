@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsGet   = require('../lib/tfs/get');
+
+tfsGet();

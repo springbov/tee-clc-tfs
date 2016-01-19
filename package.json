@@ -4,6 +4,7 @@
   "description": "NodeJS wrapper for TFS",
   "main": "index.js",
   "scripts": {
+    "start": "node ./bin/tfs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/ivangabriele/tfs#readme",
   "dependencies": {
-    "chalk": "^1.1.1"
+    "chalk": "^1.1.1",
+    "commander": "^2.9.0"
   }
 }
