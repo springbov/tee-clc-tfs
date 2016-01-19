@@ -32,7 +32,7 @@ function tfsRun(tfsOptions, callback) {
 
 function setupAndStart() {
   setup();
-  test();
+  // test();
 }
 
 setupAndStart();
