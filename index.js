@@ -1,7 +1,8 @@
-var chalk = require('chalk'),
-    fs    = require('fs'),
-    setup = require('lib/setup')(__dirname),
-    spawn = require('child_process').spawn;
+var chalk  = require('chalk'),
+    fs     = require('fs'),
+    output = require('./lib/utils/output'),
+    setup  = require('./lib/setup')(__dirname),
+    spawn  = require('child_process').spawn;
 
 function verbose(data) {
   process.stdout.write(chalk.gray(data.toString()));
@@ -20,8 +21,8 @@ function tfsRun(tfsOptions, callback) {
     console.log(exception);
   }
 
-  batch.stdout.on('data', verbose);
-  batch.stderr.on('data', errorAndExit);
+  batch.stdout.on('data', output.log);
+  batch.stderr.on('data', output.error);
   batch.on('exit', callback);
 }
 
@@ -29,10 +30,8 @@ function tfsRun(tfsOptions, callback) {
   console.log(123);
 });*/
 
-function checkSettingsAndStart() {
-  if (!fileExists('config/settings.json')) {
-    buildSettings();
-  }
+function setupAndStart() {
+  setup();
 }
 
-checkSettingsAndStart();
+setupAndStart();
