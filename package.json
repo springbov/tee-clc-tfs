@@ -1,0 +1,22 @@
+{
+  "name": "tfs",
+  "version": "1.0.0",
+  "description": "NodeJS wrapper for TFS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivangabriele/tfs.git"
+  },
+  "keywords": [
+    "tfs"
+  ],
+  "author": "Ivan Gabriele",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ivangabriele/tfs/issues"
+  },
+  "homepage": "https://github.com/ivangabriele/tfs#readme"
+}
