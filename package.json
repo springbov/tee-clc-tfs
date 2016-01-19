@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "NodeJS wrapper for TFS",
   "main": "index.js",
+  "bin": {
+    "tfs": "./bin/tfs"
+  },
   "scripts": {
     "start": "node ./bin/tfs",
     "test": "echo \"Error: no test specified\" && exit 1"
