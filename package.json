@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/ivangabriele/tfs/issues"
   },
-  "homepage": "https://github.com/ivangabriele/tfs#readme"
+  "homepage": "https://github.com/ivangabriele/tfs#readme",
+  "dependencies": {
+    "chalk": "^1.1.1"
+  }
 }
