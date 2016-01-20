@@ -5,6 +5,7 @@ var hasError   = false,
     tfsCheckin = require('../lib/tfs/checkin');
 
 program
+  .description('Commits pending changes in the current workspace to the server for Team Foundation version control.')
   .usage('[file(s)] [options]')
   .option('-a, --author [Author]', 'Identifies the author of the pending changes so that one user can check in changes on behalf of another user.')
   .option('-b, --bypass', 'Bypasses a gated check-in requirement. ')

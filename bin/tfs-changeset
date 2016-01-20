@@ -6,6 +6,7 @@ var hasError     = false,
     tfsChangeset = require('../lib/tfs/changeset');
 
 program
+  .description('Displays information about and lets you change the attributes, such as comments and check-in notes, that are associated with a changeset.')
   .usage('<changeset number> [options]')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);

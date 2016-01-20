@@ -5,6 +5,7 @@ var hasError = false,
     tfsGet   = require('../lib/tfs/get');
 
 program
+  .description('Retrieves a read-only copy of a file from the server for Team Foundation version control to the workspace and creates folders on disk to contain it.')
   .usage('[file(s)] [options]')
   .option('-l, --login [username,password]', 'Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.')
   .option('-r, --recursive', 'Recursively retrieves all items that match your file(s).')

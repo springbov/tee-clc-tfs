@@ -5,6 +5,7 @@ var hasError = false,
     tfsUndo  = require('../lib/tfs/undo');
 
 program
+  .description('Removes pending changes from a workspace.')
   .usage('[file(s)] [options]')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);

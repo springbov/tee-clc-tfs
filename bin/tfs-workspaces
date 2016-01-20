@@ -5,6 +5,7 @@ var hasError      = false,
     tfsWorkspaces = require('../lib/tfs/workspaces');
 
 program
+  .description('Displays information about workspaces in the system and updates cached information about a user name or computer name change on the server that is running Visual Studio Team Foundation Server.')
   .usage('[options]')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
