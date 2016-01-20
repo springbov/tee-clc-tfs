@@ -4,4 +4,13 @@ var hasError = false,
     program  = require('commander'),
     tfsUndo  = require('../lib/tfs/undo');
 
-tfsUndo();
+program
+  .usage('[file(s)] <options>')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  verbose: program.verbose
+};
+
+tfsUndo(program.args, options);

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var hasError   = false,
-    program    = require('commander'),
-    tfsGet = require('../lib/tfs/get');
+var hasError = false,
+    program  = require('commander'),
+    tfsGet   = require('../lib/tfs/get');
 
 program
   .usage('[file(s)] <options>')
