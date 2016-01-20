@@ -23,14 +23,23 @@
 
 ### Commands
 
-> For any command :
+> For affected commands :
 > - If you omit `[files]`, it will apply on the current directory.
 > - You can use a relative, an absolute or a TFS path.
 > - You can give multiple files/directories separated by a space.
 
-    changeset [files] &lt;options&gt;
-    checkin   [files] &lt;options&gt;
-    get       [files] &lt;options&gt;
-    undo      [files] &lt;options&gt;
+    changeset  <changeset number> [options]
+    checkin    [files] [options]
+    get        [files] [options]
+    undo       [files] [options]
+    workspaces [files] [options]
+
+## tfs changeset
+
+## tfs checkin
 
 ## tfs get
+
+## tfs undo
+
+## tfs workspaces
