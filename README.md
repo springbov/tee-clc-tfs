@@ -16,9 +16,21 @@
 
 `npm link` allow you to use `tfs` command anywhere within you file system.
 
+### Usage
+
+    D:\>cd workspace
+    D:\>Workspace>
+
 ### Commands
 
-* __changeset__ [file(s)] &lt;options&gt;
-* __checkin__ [file(s)] &lt;options&gt;
-* __get__ [file(s)] &lt;options&gt;
-* __undo__ [file(s)] &lt;options&gt;
+> For any command :
+> - If you omit `[files]`, it will apply on the current directory.
+> - You can use a relative, an absolute or a TFS path.
+> - You can give multiple files/directories separated by a space.
+
+    changeset [files] &lt;options&gt;
+    checkin   [files] &lt;options&gt;
+    get       [files] &lt;options&gt;
+    undo      [files] &lt;options&gt;
+
+## tfs get

@@ -6,11 +6,13 @@ var hasError = false,
 
 program
   .usage('[file(s)] <options>')
+  .option('-l, --login [username,password]', 'Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.')
   .option('-r, --recursive', 'Recursively retrieves all items that match your file(s).')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
 var options = {
+  login: program.login,
   recursive: program.recursive,
   verbose: program.verbose
 };

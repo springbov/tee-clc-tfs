@@ -1,7 +1,29 @@
 #!/usr/bin/env node
 
 var hasError     = false,
+    output       = require('../lib/utils/output'),
     program      = require('commander'),
     tfsChangeset = require('../lib/tfs/changeset');
 
-tfsChangeset();
+program
+  .usage('<changeset number> [options]')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+if (!program.args.length) {
+  output.error('You MUST specify the changeset number.');
+}
+
+if (program.args.length > 1) {
+  output.error('You can only specify one changeset number.');
+}
+
+if (isNaN(program.args[0])) {
+  output.error('Your changeset number can only contain numbers.');
+}
+
+var options = {
+  verbose: program.verbose
+};
+
+tfsChangeset(parseInt(program.args[0]), options);
