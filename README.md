@@ -11,10 +11,7 @@
 
 ### Installation
 
-    npm install tfs
-    npm link
-
-`npm link` allow you to use `tfs` command anywhere within you file system.
+    npm install -g tfs
 
 ### Usage
 
