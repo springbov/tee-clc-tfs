@@ -3,11 +3,12 @@
 var program = require('commander');
 
 program
-  .usage('<cmd>')
-  .command('changeset <options>', 'Displays information about and lets you change the attributes, such as comments and check-in notes, that are associated with a changeset.')
-  .command('checkin <options>', 'Commits pending changes in the current workspace to the server for Team Foundation version control.')
-  .command('get <options>', 'Retrieves a read-only copy of a file from the server for Team Foundation version control to the workspace and creates folders on disk to contain it.')
-  .command('undo <options>', 'Removes pending changes from a workspace.')
+  .usage('<command>')
+  .command('changeset [options]', 'Changesets information and editing.')
+  .command('checkin [options]', 'Commit pending changes.')
+  .command('get [options]', 'Retrieve a read-only copy of a file.')
+  .command('undo [options]', 'Remove pending changes from a workspace.')
+  .command('workspaces [options]', 'Display information about workspaces.')
 ;
 
 program.parse(process.argv);
