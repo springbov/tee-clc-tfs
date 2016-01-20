@@ -1,7 +1,18 @@
 #!/usr/bin/env node
 
-var hasError = false,
-    program  = require('commander'),
-    tfsGet   = require('../lib/tfs/get');
+var hasError   = false,
+    program    = require('commander'),
+    tfsGet = require('../lib/tfs/get');
 
-tfsGet();
+program
+  .usage('[file(s)] <options>')
+  .option('-r, --recursive', 'Recursively retrieves all items that match your file(s).')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  recursive: program.recursive,
+  verbose: program.verbose
+};
+
+tfsGet(program.args, options);

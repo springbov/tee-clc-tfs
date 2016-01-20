@@ -33,4 +33,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsCheckin(program.args, options);
+// tfsCheckin(program.args, options);
