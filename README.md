@@ -72,7 +72,6 @@
     Options:
 
       -h, --help                       output usage information
-      -l, --login [username,password]  Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.
       -r, --recursive                  Recursively retrieves all items that match your file(s).
       -V, --verbose                    Verbose mode.
 

@@ -7,13 +7,13 @@ var hasError = false,
 program
   .description('Retrieves a read-only copy of a file from the server for Team Foundation version control to the workspace and creates folders on disk to contain it.')
   .usage('[file(s)] [options]')
-  .option('-l, --login [username,password]', 'Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.')
+  // .option('-l, --login [username,password]', 'Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.')
   .option('-r, --recursive', 'Recursively retrieves all items that match your file(s).')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
 var options = {
-  login: program.login,
+  // login: program.login,
   recursive: program.recursive,
   verbose: program.verbose
 };
