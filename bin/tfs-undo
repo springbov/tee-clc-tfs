@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsUndo  = require('../lib/tfs/undo');
+
+tfsUndo();

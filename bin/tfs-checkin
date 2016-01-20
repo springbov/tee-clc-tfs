@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var hasError   = false,
+    program    = require('commander'),
+    tfsCheckin = require('../lib/tfs/checkin');
+
+program
+  .usage('[file(s)] <options>')
+  .option('-a, --author [Author]', 'Identifies the author of the pending changes so that one user can check in changes on behalf of another user.')
+  .option('-b, --bypass', 'Bypasses a gated check-in requirement. ')
+  .option('-C, --collection', 'Specifies the team project collection.')
+  .option('-c, --comment [Comment]', 'Associates a comment with the changeset.')
+  // .option('-l, --login', 'Specifies the user name and password to authenticate the user with Visual Studio Team Foundation Server.')
+  .option('-N, --noprompt', 'Suppresses any prompts for input from you.')
+  .option('-n, --notes [Note]', 'Provides one or more check-in notes to associate with the changeset.')
+  .option('-o, --override [Reason]', 'Lets you override a check-in policy failure.')
+  .option('-r, --recursive', 'Checks in all items in the specified or implied working folder and subfolders.')
+  // .option('-s, --shelveset', 'When a check-in fails or is canceled by the user or when the user unshelves changes, the selected changes, comment, work items, check-in notes, and check-in policy override reason, if any, are stored on the computer.')
+  .option('-v, --validate', 'Lets you test checking in without actually doing it.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  author: program.author,
+  bypass: !!program.bypass,
+  collection: program.collection,
+  comment: program.comment,
+  noprompt: program.noprompt,
+  notes: program.notes,
+  override: program.override,
+  recursive: program.recursive,
+  validate: program.validate,
+  verbose: program.verbose
+};
+
+tfsCheckin(program.args, options);
