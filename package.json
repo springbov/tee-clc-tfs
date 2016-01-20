@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./bin/tfs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -28,6 +28,7 @@
     "commander": "^2.9.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.5"
+    "grunt": "^0.4.5",
+    "mocha": "^2.3.4"
   }
 }
