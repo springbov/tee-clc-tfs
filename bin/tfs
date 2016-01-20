@@ -4,11 +4,11 @@ var program = require('commander');
 
 program
   .usage('<command>')
-  .command('changeset [options]', 'Changesets information and editing.')
-  .command('checkin [options]', 'Commit pending changes.')
-  .command('get [options]', 'Retrieve a read-only copy of a file.')
-  .command('undo [options]', 'Remove pending changes from a workspace.')
-  .command('workspaces [options]', 'Display information about workspaces.')
+  .command('changeset <number> [options]', 'Changesets information and editing.')
+  .command('checkin [files] [options]', 'Commit pending changes.')
+  .command('get [files] [options]', 'Retrieve a read-only copy of a file.')
+  .command('undo [files] [options]', 'Remove pending changes from a workspace.')
+  .command('workspaces [files] [options]', 'Display information about workspaces.')
 ;
 
 program.parse(process.argv);
