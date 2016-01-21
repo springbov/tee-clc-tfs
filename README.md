@@ -9,6 +9,10 @@
 
 ## Getting Started
 
+> If you're a NodeJS developer whishing to use it as a dependency,
+> there is a module exposing all commands and described in the
+> [NodeJS integration part](#N).
+
 ### Installation
 
     npm install -g tfs
@@ -92,3 +96,7 @@
 
       -h, --help     output usage information
       -V, --verbose  Verbose mode.
+
+---
+
+### NodeJS integration
