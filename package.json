@@ -6,6 +6,7 @@
   "bin": {
     "tfs": "./bin/tfs"
   },
+  "main": "lib/tfs.js",
   "scripts": {
     "start": "node ./bin/tfs",
     "test": "mocha"
