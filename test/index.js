@@ -34,8 +34,11 @@ describe('TFS Tests Suite', function() {
 
   commands.forEach(function(command) {
     describe(command.toUpperCase(), function() {
-      it('SHOULD use CWD when [item] is NOT specified', function () {
+      it('SHOULD use CWD when [items] is NOT specified', function () {
         assert.equal('get "' + cwd() + '"', tfs('get'));
+      });
+      it('SHOULD use CWD when [items] is NULL and [options] is NULL', function () {
+        assert.equal('get "' + cwd() + '"', tfs('get', null, null));
       });
       it('SHOULD use ONE ITEM when 1 [items] IS specified', function () {
         assert.equal('get "' + itemsFile() + '"', tfs('get', itemsFile()));
