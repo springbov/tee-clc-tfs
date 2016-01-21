@@ -14,6 +14,20 @@ function itemsFile() {
   return cwd() + '/..';
 }
 
+function getBooleanAssert(options) {
+  var bOptions = {},
+      output = '/' + options.b.join(' /');
+
+  options.b.forEach(function(option) {
+    bOptions[option] = true;
+  });
+
+  return {
+    options: bOptions,
+    output:  output
+  };
+}
+
 describe('TFS Tests Suite', function() {
 
   before(function() {
@@ -46,6 +60,35 @@ describe('TFS Tests Suite', function() {
       it('SHOULD use TWO ITEMS when 2 [items] ARE specified', function () {
         assert.equal(command + ' "' + itemsFile() + '" "' + itemsFile() + '"', tfs(command, itemsFile() + ' ' + itemsFile()));
       });
+    });
+  });
+
+  describe('CHECKIN (options)', function() {
+    var options = {
+      b: [
+        'bypass',
+        'noprompt',
+        'recursive',
+        'validate'
+      ]
+    };
+
+    it('SHOULD works with BOOLEAN options', function () {
+      var test = getBooleanAssert(options);
+      assert.equal('checkin "' + cwd() + '" ' + test.output, tfs('checkin', null, test.options));
+    });
+  });
+
+  describe('GET (options)', function() {
+    var options = {
+      b: [
+        'recursive'
+      ]
+    };
+
+    it('SHOULD works with BOOLEAN options', function () {
+      var test = getBooleanAssert(options);
+      assert.equal('get "' + cwd() + '" ' + test.output, tfs('get', null, test.options));
     });
   });
 });
