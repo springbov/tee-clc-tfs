@@ -11,7 +11,7 @@
 
 > If you're a NodeJS developer whishing to use it as a dependency,
 > there is a module exposing all commands and described in the
-> [NodeJS integration part](#N).
+> [NodeJS integration part](#nodejs-integration).
 
 ### Installation
 
@@ -24,7 +24,7 @@
 > - You can use a relative, an absolute or a TFS path.
 > - You can give multiple files/directories separated by a space.
 
-### Commands
+## Commands
 
     Usage: tfs <command>
 
@@ -42,7 +42,7 @@
 
       -h, --help  output usage information
 
-## tfs changeset
+#### tfs changeset
 
     Usage: tfs-changeset <changeset number> [options]
 
@@ -51,7 +51,7 @@
       -h, --help     output usage information
       -V, --verbose  Verbose mode.
 
-## tfs checkin
+#### tfs checkin
 
     Usage: tfs-checkin [file(s)] [options]
 
@@ -69,7 +69,7 @@
       -v, --validate           Lets you test checking in without actually doing it.
       -V, --verbose            Verbose mode.
 
-## tfs get
+#### tfs get
 
     Usage: tfs-get [file(s)] [options]
 
@@ -79,7 +79,7 @@
       -r, --recursive                  Recursively retrieves all items that match your file(s).
       -V, --verbose                    Verbose mode.
 
-## tfs undo
+#### tfs undo
 
     Usage: tfs-undo [file(s)] [options]
 
@@ -88,7 +88,7 @@
       -h, --help     output usage information
       -V, --verbose  Verbose mode.
 
-## tfs workspaces
+#### tfs workspaces
 
     Usage: tfs-workspaces [options]
 
@@ -99,4 +99,39 @@
 
 ---
 
-### NodeJS integration
+## NodeJS integration
+
+You can install **tfs** as a dependency for your NodeJS projects :
+
+    npm install tfs --save
+
+### Usage example
+
+To execute recursively get latest files within D:\MyBranch\MyProject,
+admitting that this project is source-versionned via TFS,
+you could write the following code :
+
+    var tfs = require('tfs');
+
+    tfs('get', 'D:/MyProject/MyBranch D:/MyOtherProject/MyOtherBranch', {
+      recursive: true
+    })
+
+If you prefer to use the current directory, you can ommit the second parameter or set it to null.
+
+### tfs description
+
+    tfs(command, items, options);
+
+#### _command_
+
+    {String} TFS command to execute.
+
+#### _items_
+
+    {String} File(s) (seprated by spaces) or changeset number.
+             Can be null/undefined to use the current path.
+
+#### _options_
+
+    {Object} TFS command options. Can be null/undefined.
