@@ -7,6 +7,8 @@
 [![Dependency Status](https://david-dm.org/ivangabriele/tfs.svg)](https://david-dm.org/ivangabriele/tfs)
 [![devDependency Status](https://david-dm.org/ivangabriele/tfs/dev-status.svg)](https://david-dm.org/ivangabriele/tfs#info=devDependencies)
 
+---
+
 ## Getting Started
 
 > If you're a NodeJS developer whishing to use it as a dependency,
