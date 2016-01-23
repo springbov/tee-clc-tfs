@@ -26,4 +26,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsChangeset(program.args, options);
+tfsChangeset(options);

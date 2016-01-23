@@ -30,4 +30,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsDestroy(program.args, options);
+tfsDestroy(options);

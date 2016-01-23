@@ -32,4 +32,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsShelve(program.args, options);
+tfsShelve(options);

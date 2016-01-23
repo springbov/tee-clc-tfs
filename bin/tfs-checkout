@@ -22,4 +22,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsCheckout(program.args, options);
+tfsCheckout(options);

@@ -36,4 +36,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsWorkspace(program.args, options);
+tfsWorkspace(options);

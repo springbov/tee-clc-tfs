@@ -22,4 +22,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsUndelete(program.args, options);
+tfsUndelete(options);

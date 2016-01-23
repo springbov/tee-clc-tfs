@@ -34,4 +34,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsPermission(program.args, options);
+tfsPermission(options);

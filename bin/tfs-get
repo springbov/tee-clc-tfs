@@ -6,7 +6,7 @@ var hasError = false,
 
 program
   .description('Retrieves a read-only copy of a file from the server for Team Foundation version control to the workspace and creates folders on disk to contain it.Required PermissionsTo use the get command, you must have the Read permission set to Allow for every retrieved item and you must either own the destination workspace or have the global Administer workspaces permission. For more information, see Team Foundation Server Permissions.')
-  .usage('[options]')
+  .usage('[itemspec] [options]')
   .option('-v, --version', 'File or folder to retrieve. If no itemspec is provided, Team Foundation Server performs a recursive get operation on all items that are mapped in the current workspace.')
   .option('-a, --all', 'The user-provided value for the /version option. For more information about how Team Foundation Server parses a version specification to determine which items are within its scope, see Command-Line Syntax (Version Control).')
   .option('-o, --overwrite', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')

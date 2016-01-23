@@ -22,4 +22,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsLabels(program.args, options);
+tfsLabels(options);

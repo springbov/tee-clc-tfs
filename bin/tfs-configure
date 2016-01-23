@@ -18,4 +18,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsConfigure(program.args, options);
+tfsConfigure(options);
