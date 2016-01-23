@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node ./bin/tfs",
-    "test": "mocha"
+    "test": "grunt test"
   },
   "repository": {
     "type": "git",

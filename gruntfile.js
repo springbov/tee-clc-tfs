@@ -27,7 +27,11 @@ module.exports = function(grunt) {
     },
     mochaTest: {
       dist: {
-        src: 'test/**/*.js'
+        src: [
+          'test/start.js',
+          'test/tfs/*.js',
+          'test/end.js'
+        ]
       }
     }
   });
