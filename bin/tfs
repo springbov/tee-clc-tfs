@@ -15,7 +15,7 @@ program
   .command('diff [itemspec] [itemspec2] [options]', 'Displays differences between two local/server files.')
   .command('dir [itemspec] [options]', 'Displays all or some of the contents of the server for Team Foundation version control.')
   .command('folderdiff [targetPath] [options]', 'Displays differences between local/server directories.')
-  .command('get [options]', 'Retrieves a read-only copy of files and folders from TFS.')
+  .command('get [itemspec] [options]', 'Get the latest version of files and folders from TFS.')
   .command('history [itemspec] [options]', 'Displays the revision history for one or more files, folders or both.')
   .command('label [labelname] [options]', 'Attaches a label to or removes a label from a TFS file or folder.')
   .command('labels [options]', 'Displays the list of labels in the server for Team Foundation version control.')
