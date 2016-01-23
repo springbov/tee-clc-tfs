@@ -7,34 +7,34 @@ var hasError = false,
 program
   .description('Commits pending changes in the current workspace.')
   .usage('[itemspec] [options]')
-  .option('-a, --author', 'The user-provided value for the /author option.')
-  .option('-b, --bypass', 'Identifies the shelveset that you want to check in. The optional owner argument is used to specify a shelveset that the current user does not own.')
-  .option('-c, --collection', 'Associates a comment with the changeset. ')
-  .option('-C, --comment', 'A user-provided comment about the check-in.')
-  .option('-l, --login', 'The URL of the team project collection that contains the files or folders that you want to check in (for example, http://myserver:8080/tfs/DefaultCollection).')
-  .option('-n, --noprompt', 'The user-provided path of a file on disk that contains the comment for the check-in.')
-  .option('-N, --notes', 'Sets the value of the check-in note field. You can provide multiple, semicolon-separated \"field=value\" expressions.')
-  .option('-o, --override', 'The user-provided path of a file on disk that contains check-in note field names and values in the format of \"field=value\" A semicolon separated note tile can span multiple lines, for example:')
-  .option('-r, --recursive', 'A user-provided description of the reason why the check-in policy is being ignored. If a reason is specified, a notification of the policy override and this explanation is sent to Team Foundation administrators by e-mail.')
-  .option('-s, --saved', 'Specifies a file or folder to check-in. For more information about how Team Foundation parses a file specification to determine which items are within its scope, see Command-Line Options.')
-  .option('-S, --shelveset', 'Identifies the author of the pending changes so that one user can check in changes on behalf of another user.')
-  .option('-v, --validate', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-a, --author [author name]', 'Identifies the author.')
+  .option('-b, --bypass', 'Bypasses a gated check-in requirement.')
+  .option('-c, --collection [TeamProjectCollectionUrl]', 'Specifies the team project collection.')
+  .option('-C, --comment [comment]', 'Associates a comment with the changeset.')
+  .option('-l, --login [username,[password]]', 'Specifies the user account to run the command.')
+  .option('-n, --noprompt', 'Suppresses any prompts for input from you.')
+  // .option('-N, --notes', 'Provides one or more check-in notes to associate with the changeset.')
+  .option('-o, --override [reason]', 'Override a check-in policy failure.')
+  .option('-r, --recursive', 'Checks in all items in the specified or implied working folder and subfolders.')
+  .option('-s, --saved', 'Store check-in data on the computer in case of failure.')
+  .option('-S, --shelveset [shelvesetname[;shelvesetowner]]', 'Specifies the shelveset by name.')
+  .option('-v, --validate', 'The /validate option lets you test checking in without actually doing it.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
 var options = {
   author: program.author,
+  bypass: program.bypass,
+  collection: program.collection,
   comment: program.comment,
+  login: program.login,
   noprompt: program.noprompt,
-  notes: program.notes,
+  // notes: program.notes,
   override: program.override,
   recursive: program.recursive,
   saved: program.saved,
-  validate: program.validate,
-  bypass: program.bypass,
-  login: program.login,
   shelveset: program.shelveset,
-  collection: program.collection,
+  validate: program.validate,
   verbose: program.verbose
 };
 
