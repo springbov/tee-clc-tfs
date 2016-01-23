@@ -18,7 +18,7 @@ program
   .command('folderdiff [targetPath] [options]', 'Displays differences between local/server directories.')
   .command('get [options]', 'Retrieves a read-only copy of files and folders from TFS.')
   .command('history [itemspec] [options]', 'Displays the revision history for one or more files, folders or both.')
-  .command('label [labelname[@scope]] [options]', 'Attaches a label to or removes a label from a TFS file or folder.')
+  .command('label [labelname] [options]', 'Attaches a label to or removes a label from a TFS file or folder.')
   .command('labels [options]', 'Displays the list of labels in the server for Team Foundation version control.')
   .command('localversions [itemspec] [options]', 'Displays the version of one or more items in a workspace.')
   .command('lock [itemspec] [options]', 'Locks or unlocks a file or folder.')
