@@ -21,11 +21,11 @@ describe('GET Tests Suite', function() {
 
   it('SHOULD works with BOOLEAN options', function () {
     var test = debug.getBooleanAssert(options);
-    assert.equal('get "' + debug.cwd() + '" ' + test.output, tfs('get', null, test.options));
+    assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options));
   });
 
   it('SHOULD works with STRING options', function () {
     var test = debug.getStringAssert(options);
-    assert.equal('get "' + debug.cwd() + '" ' + test.output, tfs('get', null, test.options));
+    assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options));
   });
 });
