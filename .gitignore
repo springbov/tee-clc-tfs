@@ -12,3 +12,7 @@ node_modules
 
 # Configuration files
 /config/*.json
+
+# Development files
+/commands
+/get.js
