@@ -40,16 +40,8 @@ module.exports = function(grunt) {
   ];
 
   grunt.registerTask('default', '', function() {
-    var fs = require('fs');
-    var request = require('request');
-
     commands.forEach(function(command) {
       console.log(command.url);
-      request(command.url).pipe(fs.createWriteStream('./commands/' + command.command + '.html'));
     });
-
-    setTimeout(function() {
-      done();
-    }, commands.length * 10000);
   });
 };
