@@ -5,7 +5,7 @@ var hasError = false,
     tfsGet = require('../lib/tfs/get');
 
 program
-  .description('Get the latest version of files and folders from TFS.')
+  .description('Get the latest version of files and folders.')
   .usage('[itemspec] [options]')
   .option('-a, --all', 'Rrestore an item that you have accidentally deleted from a server workspace.')
   .option('-f, --force', 'Combines --all and --overwrite.')

@@ -5,7 +5,7 @@ var hasError = false,
     tfsUndo = require('../lib/tfs/undo');
 
 program
-  .description('Removes pending changes from a workspace.Required PermissionsTo use the undo command, you must be the owner of the specified workspace or have the global Administer workspaces permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .description('RRemoves pending changes from a workspace.')
   .usage('[itemspec] [options]')
   .option('-w, --workspace', 'The user-provided value for the /workspace option.')
   .option('-r, --recursive', 'Specifies the name of the user who created the workspace.')

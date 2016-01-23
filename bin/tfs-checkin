@@ -5,7 +5,7 @@ var hasError = false,
     tfsCheckin = require('../lib/tfs/checkin');
 
 program
-  .description('Commits pending changes in the current workspace to the server for Team Foundation version control.Required PermissionsTo use the checkin command you must have the Check in permission set to Allow. To use /author option, you must have Check in other user\'s changes permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .description('Commits pending changes in the current workspace.')
   .usage('[itemspec] [options]')
   .option('-a, --author', 'The user-provided value for the /author option.')
   .option('-b, --bypass', 'Identifies the shelveset that you want to check in. The optional owner argument is used to specify a shelveset that the current user does not own.')
