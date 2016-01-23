@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsConfigure = require('../lib/tfs/configure');
+
+program
+  .description('Enables an administrator to view and change the following configuration settings for a team project in the Source Control Settings dialog box:Check-out settingsCheck-in policiesCheck-in notesRequired PermissionsTo use the configure command, you must have the Edit server-level information permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-c, --collection', 'Path of the team project whose configuration settings an administrator can view, change, or both.')
+  .option('-l, --login', 'The URL of the team project collection that contains the team project that you specified (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  collection: program.collection,
+  login: program.login
+};
+
+tfsConfigure(program.args, options);

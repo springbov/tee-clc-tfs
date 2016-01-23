@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsUndelete = require('../lib/tfs/undelete');
+
+program
+  .description('The undelete command restores items that were previously deleted.Note   The results of this command are not visible in other workspaces until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the undelete command, you must have the Check out permission set to Allow. If you include the /lock option with a value other than none, you must have the Lock permission set to Allow. Additionally, you must own the workspace or have the global Administer workspaces permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-n, --noget', 'Identifies the file or folder to undelete. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Syntax (Version Control).')
+  .option('-l, --lock', 'Specifies a unique identifier that disambiguates multiple deleted items with the same name.')
+  .option('-r, --recursive', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-l, --login', 'Restores the deleted item to your workspace and then, pending completion of a check-in operation, restores the item on the server but does not immediately retrieve a physical copy of the item to disk. ')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  noget: program.noget,
+  lock: program.lock,
+  recursive: program.recursive,
+  login: program.login
+};
+
+tfsUndelete(program.args, options);

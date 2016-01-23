@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsShelvesets = require('../lib/tfs/shelvesets');
+
+program
+  .description('Displays information about a set of shelved changes.Required PermissionsTo use the shelvesets command, you must the have Read permission and the Check out permission set to Allow for the items in the shelvesets. For more information, see Team Foundation Server Permissions.')
+  .usage('[shelvesetname] [options]')
+  .option('-o, --owner', 'Provides a value such as * or DOMAIN\\john to the /owner option.')
+  .option('-f, --format', 'The name of the shelveset.')
+  .option('-c, --collection', 'The URL of the team project collection that contains a set of shelved changes about which you want to display information (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-l, --login', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  owner: program.owner,
+  format: program.format,
+  collection: program.collection,
+  login: program.login
+};
+
+tfsShelvesets(program.args, options);

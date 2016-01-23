@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsCheckout = require('../lib/tfs/checkout');
+
+program
+  .description('Makes the local file writable, and changes its Pending Change status to \"edit\" in the workspace. Edit is an alias for the Checkout command. For more information, see Pending Changes.Note   Any edits that you make to items that have been checked out are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the checkout command, your Check out permission must be set to Allow, and you must be either the workspace owner or your global Administer workspaces permission must be set to Allow. Also, if you use the /lock option with a value other than none, your Lock permission must be set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-t, --type', 'Provides a value for the /type option. Alternatives include the following: Text is an alias for the current windows encoding (Windows-1252 on US systems) or Unicode (based on the BOM, or byte order mark), Binary, and all other file encodings supported by the Windows operating system. You may also use Auto, which detects the type for you. For more information, see Managing File Types.')
+  .option('-r, --recursive', 'Specifies one or more files to check out. You can use wildcard characters here.')
+  .option('-l, --lock', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-l, --login', 'Manually overrides the file encoding that Team Foundation associates with the specified files.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  type: program.type,
+  recursive: program.recursive,
+  lock: program.lock,
+  login: program.login
+};
+
+tfsCheckout(program.args, options);

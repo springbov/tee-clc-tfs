@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsWorkspace = require('../lib/tfs/workspace');
+
+program
+  .description('Lets you create, delete, view, or modify properties and mappings associated with a workspace.Required PermissionsTo modify or delete an existing workspace, you must be the owner or have the global Administer workspaces permission set to Allow. To create a workspace, you must have the global Create a workspace permission set to Allow. To create workspaces for other users, you must have the Administer workspaces permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-n, --new', 'Specifies a name for the workspace which to create, edit, delete, or display information about.')
+  .option('-t, --template', 'Specifies a username for the workspace. This parameter is required when the workspace owner is not the person performing the command.')
+  .option('-d, --delete', 'Provides a value to the /computer option.')
+  .option('-c, --computer', 'Provides a value to the /comment option.')
+  .option('-c, --comment', 'Specifies the path of a file where the comment should be read.')
+  .option('-n, --newname', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-n, --noprompt', 'The URL of the team project collection that contains the workspace about which you want to create, edit, delete, or display information (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-c, --collection', 'Provides a value to the /newowner option. ')
+  .option('-p, --permission', 'Creates a new workspace.')
+  .option('-l, --login', 'Specifies an existing workspace to use as a template to create the new workspace. The new workspace uses the mappings of the existing workspace.')
+  .option('-n, --newowner', 'Deletes the specified workspace.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  new: program.new,
+  template: program.template,
+  delete: program.delete,
+  computer: program.computer,
+  comment: program.comment,
+  newname: program.newname,
+  noprompt: program.noprompt,
+  collection: program.collection,
+  permission: program.permission,
+  login: program.login,
+  newowner: program.newowner
+};
+
+tfsWorkspace(program.args, options);

@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsRollback = require('../lib/tfs/rollback');
+
+program
+  .description('You can use this command to roll back the effects of one or more changesets to one or more version-controlled items. This command does not remove the changesets from an item\'s version history. Instead, this command creates in your workspace a set of pending changes that negate the effects of the changesets that you specify.Required PermissionsTo use this command, you must have the Read, Check Out, and Check In permissions set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[ItemSpec] [options]')
+  .option('-c, --changeset', 'Use this argument with the /changeset option to specify the changesets that you want to roll back. You can specify the changesets in the following ways:')
+  .option('-k, --keepmergehistory', 'Use this argument to specify one or more items that you want to roll back. If you are using the /toversion option, you must specify this argument.')
+  .option('-l, --lock', 'The user-provided value for both the /version option and the /toversion option. ')
+  .option('-l, --login', 'Use this option to specify one or more specific changesets that you want to negate.')
+  .option('-n, --noprompt', 'This option has an effect only if one or more of the changesets that you are rolling back include a branch or merge change. Specify this option if you want future merges between the same source and the same target to exclude the changes that you are rolling back.')
+  .option('-r, --recursive', 'Specify this option to prevent other users from checking in or checking out items until you finish rolling back all associated changes. For more information, see Understanding Lock Types.')
+  .option('-t, --toversion', 'For information about this option, see Command-Line Options.')
+  .option('-v, --version', 'Suppresses any dialog boxes that would otherwise appear during this operation.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  changeset: program.changeset,
+  keepmergehistory: program.keepmergehistory,
+  lock: program.lock,
+  login: program.login,
+  noprompt: program.noprompt,
+  recursive: program.recursive,
+  toversion: program.toversion,
+  version: program.version
+};
+
+tfsRollback(program.args, options);

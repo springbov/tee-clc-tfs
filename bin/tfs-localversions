@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsLocalversions = require('../lib/tfs/localversions');
+
+program
+  .description('Displays the version of one or more items in a workspace.Required PermissionsTo use the localversions command, you must have the Use permission to the workspace. For more information, see Team Foundation Server Permissions.')
+  .usage('[ItemSpec] [options]')
+  .option('-f, --format', 'Specify either a file or a folder that contains the files for which you want to display version numbers.')
+  .option('-r, --recursive', 'Use this argument with the /workspace option to specify a workspace other than the one that is mapped to the current directory.')
+  .option('-w, --workspace', 'Use this argument with the WorkSpaceName argument if you want to specify a public workspace.')
+  .option('-c, --collection', 'The URL of the team project collection that contains one or more items for which you want to display the version (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  format: program.format,
+  recursive: program.recursive,
+  workspace: program.workspace,
+  collection: program.collection
+};
+
+tfsLocalversions(program.args, options);

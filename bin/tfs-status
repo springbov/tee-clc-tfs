@@ -1,0 +1,30 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsStatus = require('../lib/tfs/status');
+
+program
+  .description('Displays information about pending changes to items in one or more workspaces.Required PermissionsTo use the status command, you must have the Read permission set to Allow for all specified files or folders. For more information, see Team Foundation Server Permissions.')
+  .usage('[itemspec] [options]')
+  .option('-c, --collection', 'Identifies the file or folder for which to display status details. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Syntax (Version Control). ')
+  .option('-l, --login', 'The URL of the team project collection about which you want to show status information (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-w, --workspace', 'The user-provided value for the /workspace option.')
+  .option('-s, --shelveset', 'Specifies the name of the user who created the workspace.')
+  .option('-f, --format', 'The user-provided value for the /shelveset option.')
+  .option('-r, --recursive', 'Specifies the name of the shelveset owner.')
+  .option('-u, --user', 'Provides a value to the /user option. A username value can be expressed in one of two ways, depending on the network settings: DOMAIN\\username or username.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  collection: program.collection,
+  login: program.login,
+  workspace: program.workspace,
+  shelveset: program.shelveset,
+  format: program.format,
+  recursive: program.recursive,
+  user: program.user
+};
+
+tfsStatus(program.args, options);

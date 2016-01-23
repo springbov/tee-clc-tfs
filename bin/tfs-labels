@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsLabels = require('../lib/tfs/labels');
+
+program
+  .description('Displays the list of labels in the server for Team Foundation version control.Required PermissionsTo use the labels command, you must have the Read permission set to Allow for all files or folders to which the specified label is attached. If you have permission to some, but not all the files referenced in the label, partial results are displayed. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-o, --owner', 'Provides a username as DOMAIN\\JuanGo or juango to the /owner option.')
+  .option('-f, --format', 'Specifies a string that should be used to filter the list of labels. If this parameter is omitted, the label name field will not be filtered.')
+  .option('-c, --collection', 'The URL of the team project collection for which you want to display the list of labels (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-l, --login', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  owner: program.owner,
+  format: program.format,
+  collection: program.collection,
+  login: program.login
+};
+
+tfsLabels(program.args, options);

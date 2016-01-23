@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsMerge = require('../lib/tfs/merge');
+
+program
+  .description('The merge command applies changes from one branch into another.NoteThe results of this command are not reflected in the Team Foundation version control server until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the merge command, you must have the Check out permission set to Allow for the workspace folder that contains the destination and you must have the Read permission set to Allow for the workspace folder that contains the source. For more information, see Team Foundation Server Permissions.')
+  .usage('[source] [destination] [options]')
+  .option('-r, --recursive', 'Provides a value such as C2 for the /version option. For more information about how Team Foundation parses a version specification to determine which items are within its scope, see Command-Line Syntax (Version Control).')
+  .option('-f, --force', 'Specifies the file or folder to act as the source of the merge.  ')
+  .option('-c, --candidate', 'Specifies the file or folder to act as the destination of the merge.')
+  .option('-d, --discard', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-v, --version', 'Matches the source item specification in the current directory and any subfolders.')
+  .option('-l, --lock', 'Ignores the merge history and merges the specified changes from the source into the destination, even if some or all these changes have been merged before.')
+  .option('-p, --preview', 'Prints a list of all changesets in the source that have not yet been merged into the destination. The list should include the changeset ID that has not been merged and other basic information about that changeset.')
+  .option('-b, --baseless', 'Does not perform the merge operation, but updates the merge history to track that the merge occurred. This discards a changeset from being used for a particular merge.')
+  .option('-n, --noimplicitbaseless', 'For a selective merge, this option specifies the range that should be merged into the destination. For a catch-up merge, this parameter specifies the version before which all un-merged changes should be merged. ')
+  .option('-n, --nosummary', 'Specifies a lock type or removes a lock from an item. For more information, see Understanding Lock Types.')
+  .option('-n, --noprompt', 'Shows a preview of the merge.')
+  .option('-c, --conservative', 'Performs a merge without a base version. That is, allows the user to merge files and folders that do not have a merge relationship. After a baseless merge, a merge relationship exists, and future merges do not have to be baseless.')
+  .option('-f, --format', 'Specifies that Team Foundation will not perform an implicit baseless merge between two items that have the same relative name in two unrelated version-control trees. ')
+  .option('-l, --login', 'Omits summary of conflicts, errors and warnings. ')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  recursive: program.recursive,
+  force: program.force,
+  candidate: program.candidate,
+  discard: program.discard,
+  version: program.version,
+  lock: program.lock,
+  preview: program.preview,
+  baseless: program.baseless,
+  noimplicitbaseless: program.noimplicitbaseless,
+  nosummary: program.nosummary,
+  noprompt: program.noprompt,
+  conservative: program.conservative,
+  format: program.format,
+  login: program.login
+};
+
+tfsMerge(program.args, options);

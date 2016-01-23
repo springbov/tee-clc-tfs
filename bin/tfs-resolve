@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsResolve = require('../lib/tfs/resolve');
+
+program
+  .description('Lets you resolve conflicts between changed items in your workspace and the latest or destination versions of items on the server.Required PermissionsTo use the resolve command, you must be either the workspace owner or have the global Administer workspaces permission set to Allow. You must also have the Read and Check out permissions for the items involved in a resolve operation set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-a, --auto', 'Used to identify the file or folder for which to resolve version conflicts. If omitted, all items with conflicts will be included. For more information about how Visual Studio Team Foundation Server parses itemspecs to determine which items are within scope, see Command-Line Syntax (Version Control).')
+  .option('-p, --preview', 'Used with the /overridetype option. Specifies the encoding type of the files involved. For example; binary.')
+  .option('-o, --overridetype', 'Used with the /converttotype option. Specifies the encoding type, such as \"unicode.\"')
+  .option('-c, --converttotype', 'Used with the /newname option. Specifies the new path of the affected file or folder')
+  .option('-r, --recursive', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-n, --newname', 'Resolves outstanding conflicts between different versions of specified items in the current workspace using one of the following options:')
+  .option('-l, --login', 'Displays current conflicts but does nothing with them.')
+  .option('-n, --noprompt', 'Specifies optional encoding for files involved in a three-way merge. The files are treated as the specified encoding. You must determine the correct encoding. Team Foundation Server saves the resulting merge output in the specified encoding in your workspace. For more information about file encodings, see Managing File Types.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  auto: program.auto,
+  preview: program.preview,
+  overridetype: program.overridetype,
+  converttotype: program.converttotype,
+  recursive: program.recursive,
+  newname: program.newname,
+  login: program.login,
+  noprompt: program.noprompt
+};
+
+tfsResolve(program.args, options);

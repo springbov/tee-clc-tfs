@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsMerges = require('../lib/tfs/merges');
+
+program
+  .description('Displays detailed information about past merges between the specified source and destination branches.Required PermissionsTo use the merges command, you must have the Read permission set to Allow for both source and destination branches. For more information, see Team Foundation Server Permissions.')
+  .usage('[destination] [options]')
+  .option('-r, --recursive', 'Filters the merge history to include only entries with the specified sources.')
+  .option('-e, --extended', 'Specifies the destination branch for which merge history is displayed.')
+  .option('-f, --format', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-l, --login', 'The URL of the team project collection that contains the branches about which you want to display the merge history (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-s, --showall', 'Displays information for all merges in specified Team Foundation version control server folder and its subfolders.')
+  .option('-c, --collection', 'Displays a list of merges for a specific range of target items (for example: tf merges tgt\\file1.txt; C21-25). This option displays the types of merges (for example, add or edit) and detailed information about the source and target items. This option implies /format: Detailed.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  recursive: program.recursive,
+  extended: program.extended,
+  format: program.format,
+  login: program.login,
+  showall: program.showall,
+  collection: program.collection
+};
+
+tfsMerges(program.args, options);

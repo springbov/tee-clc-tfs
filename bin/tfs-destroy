@@ -1,0 +1,32 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsDestroy = require('../lib/tfs/destroy');
+
+program
+  .description('Use the tf destroy command to destroy, or permanently delete, version-controlled files from Team Foundation version control. The destroy action cannot be reversed. You must not destroy files that are still needed. Sometimes you have to clean up version control systems. For example, if some files are infected with a computer virus, you have to remove them permanently from version control.Before you run tf destroy without the /keephistory option, we recommend that you first delete the files you want to destroy. For more information, see Delete Files and Folders from Version Control.After you delete the files you can synchronize the Team Foundation warehouse. Otherwise, the warehouse will not be synchronized with the destroyed items.Required PermissionsTo use the destroy command, you must belong to the Team Foundation Administrators security group. For more information, see Team Foundation Server Permissions.')
+  .usage('[options]')
+  .option('-k, --keephistory', 'Specifies the server path of the file or folder to be destroyed. Use multiple itemspec values to delete multiple items. For example, tf destroy $/TeamProject1 $/teamProject2 $/TeamProject3.')
+  .option('-s, --stopat', 'Provides a version such as C58 for the /keephistory or /stopat options. The allowed values are date, tip, or a specific changeset. For more information about how Team Foundation parses a version specification to determine which items are within its scope, see Command-Line Syntax (Version Control).')
+  .option('-p, --preview', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-s, --startcleanup', 'The URL of the team project collection that contains files that you want to destroy (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-n, --noprompt/i', 'Optional. Specifies that the history of a file is preserved even as its contents are destroyed. This cannot be specified with the /preview option.')
+  .option('-s, --silent', 'Optional. Can be used only if /keephistory is specified also. ')
+  .option('-l, --login', 'Displays in the Command Prompt window the files that would be destroyed. When tf destroy runs in the preview mode, the files are not actually destroyed.')
+  .option('-c, --collection', 'Forces the file content clean-up process to start immediately after the content deletion finishes. If the user does not specify /startcleanup, the destroyed content clean-up process occurs when the database maintenance cleans up all the files that are no longer referenced by Visual Studio Team Foundation Server. By default, the clean-up is scheduled to run once each day.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  keephistory: program.keephistory,
+  stopat: program.stopat,
+  preview: program.preview,
+  startcleanup: program.startcleanup,
+  noprompt/i: program.noprompt/i,
+  silent: program.silent,
+  login: program.login,
+  collection: program.collection
+};
+
+tfsDestroy(program.args, options);

@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsBranches = require('../lib/tfs/branches');
+
+program
+  .description('Displays the history of a branch for a specified file or folder.Required PermissionsTo use the branches command, your Read permission must be set to Allow for the item and any branches to view their history. For more information, see Team Foundation Server Permissions.')
+  .usage('[itemspec] [options]')
+  .option('-v, --version', 'Identifies the file or folder that contains the branch you want to examine. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Options. ')
+  .option('-c, --collection', 'Provides a value for the /version option. For more information about how Team Foundation parses a version specification to determine which items are within its scope, see Command-Line Syntax (Version Control).')
+  .option('-l, --login', 'The URL of the team project collection that contains a file or folder in a branch for which you want to display the history (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  version: program.version,
+  collection: program.collection,
+  login: program.login
+};
+
+tfsBranches(program.args, options);

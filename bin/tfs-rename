@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsRename = require('../lib/tfs/rename');
+
+program
+  .description('The rename command changes the name or the path of a file or folder. You can use the rename command or the aliases move or ren, to move a file or folder to a new location.Note   The results of this command are not reflected in the Team Foundation version control server until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the rename command, you have the Check out permission set to Allow. For more information, see Team Foundation Server Permissions.')
+  .usage('[olditem] [newitem] [options]')
+  .option('-l, --lock', 'The original name and path of the file or folder that is to be renamed. You can specify a local workspace path such as C:\\myfiles\\314.cs or a Team Foundation version control server path such as $/myfiles/314.cs.')
+  .option('-l, --login', 'The new name of the file or folder. You can use this to specify a different local or a Team Foundation version control server path location.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  lock: program.lock,
+  login: program.login
+};
+
+tfsRename(program.args, options);

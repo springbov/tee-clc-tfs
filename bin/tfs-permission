@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsPermission = require('../lib/tfs/permission');
+
+program
+  .description('Modifies the user access control list (ACL) and displays authorization settings for an item under version control.Required PermissionsTo use the permission command, you must have the Manipulate security settings permission set to Allow for the folders being modified, be a member of the Team Foundation Administrators security group, or be a system administrator on the local computer (Windows Administrator security group). For more information, see Team Foundation Server Permissions. ')
+  .usage('[options]')
+  .option('-a, --allow', 'Name of a permission or role to modify. For more information about the permission names, see Team Foundation Server Permissions.')
+  .option('-d, --deny', 'Provides a value to the /user option. A username value can be expressed in one of two ways, depending on the network settings: DOMAIN\\username or username.')
+  .option('-r, --remove', 'The user-provided value for the /group option.')
+  .option('-i, --inherit', 'The URL of the team project collection that contains the item for which you want to modify permissions (for example, http://myserver:8080/tfs/DefaultCollection).')
+  .option('-u, --user', 'Identifies the file or folder for which to modify permissions. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Syntax (Version Control).')
+  .option('-g, --group', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .option('-c, --collection', 'Specifies a list of Team Foundation version control permissions to add to the allow ACL.')
+  .option('-r, --recursive', 'Specifies a list of denied Team Foundation version control access permissions to add to the user access control list.')
+  .option('-g, --global', 'Specifies a list of Team Foundation version control permissions to remove from both the allow and the deny ACLs.')
+  .option('-l, --login', 'If you select yes, all permissions associated with a parent ACL are inherited by an item. Cannot be combined with the /remove option.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {
+  allow: program.allow,
+  deny: program.deny,
+  remove: program.remove,
+  inherit: program.inherit,
+  user: program.user,
+  group: program.group,
+  collection: program.collection,
+  recursive: program.recursive,
+  global: program.global,
+  login: program.login
+};
+
+tfsPermission(program.args, options);

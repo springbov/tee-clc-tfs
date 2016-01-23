@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    program  = require('commander'),
+    tfsHistory = require('../lib/tfs/history');
+
+program
+  .description('Displays the revision history for one or more files, folders or both.Required PermissionsTo use the history command, you must have Read permission set to Allow for all files or folders for which history is requested. For more information, see Team Foundation Server Permissions.')
+  .usage('[itemspec] [options]')
+  .option('-V, --verbose', 'Verbose mode.')
+  .parse(process.argv);
+
+var options = {};
+
+tfsHistory(program.args, options);
