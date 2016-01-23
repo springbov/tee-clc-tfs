@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: tfs/lock.js</title>
+    <title>JSDoc: Source: tfs/diff.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: tfs/lock.js</h1>
+    <h1 class="page-title">Source: tfs/diff.js</h1>
 
     
 
@@ -31,41 +31,73 @@
     tf     = require('../utils/tf');
 
 /**
- * Locks or unlocks a file or folder to deny or restore the right of users to check out an item for edit into a different workspace or to check in pending changes to an item from a different workspace.Required PermissionsTo use the lock command, you must have the Lock permission set to Allow. Having the Unlock other user\'s changes permission set to Allow is required to remove a lock held by another user if you do not have Write permission for that user\'s workspace. For more information, see Team Foundation Server Permissions.
+ * Compares, and if it is possible, displays differences between two files, files in two folders, or a shelveset and a local or a server file.Required PermissionsTo use the difference command, you must have the Read permission for all specified items set to Allow. For more information, see Team Foundation Server Permissions.
  *
  * @param  {Array}  itemspec File(s) or folder(s) to retrieve.
                              If null/undefined, equals CWD.
  * @param  {Object} options  Command options
  */
-var lock = function(itemspec, options) {
-  var params = format.items(itemspec);
+var diff = function(itemspec, options) {
+  var params = itemspec;
 
-  if (options.lock) {
-    params.push('/lock');
+  if (options.type) {
+    params.push('/type');
   }
 
-  if (options.workspace) {
-    params.push('/workspace');
+  if (options.version) {
+    params.push('/version');
+  }
+
+  if (options.format) {
+    params.push('/format');
+  }
+
+  if (options.ignorespace) {
+    params.push('/ignorespace');
+  }
+
+  if (options.ignoreeol) {
+    params.push('/ignoreeol');
+  }
+
+  if (options.ignorecase) {
+    params.push('/ignorecase');
+  }
+
+  if (options.recursive) {
+    params.push('/recursive');
+  }
+
+  if (options.options) {
+    params.push('/options');
+  }
+
+  if (options.shelveset) {
+    params.push('/shelveset');
+  }
+
+  if (options.noprompt) {
+    params.push('/noprompt');
+  }
+
+  if (options.configure) {
+    params.push('/configure');
   }
 
   if (options.login) {
     params.push('/login');
   }
 
-  if (options.collection) {
-    params.push('/collection');
-  }
-
   if (options.verbose) {
     output.verbose('Command: get ' + params.join(' '));
   }
 
-  return tf('lock', params, function() {
+  return tf('diff', params, function() {
     output.success('Done, without errors.');
   }, !!options.verbose);
 };
 
-module.exports = lock;
+module.exports = diff;
 </code></pre>
         </article>
     </section>

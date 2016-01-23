@@ -13,7 +13,7 @@ program
   .command('configure [options]', 'Enables an administrator to view and change TFS settings.')
   .command('delete [itemspec] [options]', 'Removes items from TFS and deletes them.')
   .command('destroy [options]', 'Permanently delete version-controlled files from TFS.')
-  .command('difference [header.h] [options]', 'Displays differences between two local/server files.')
+  .command('diff [itemspec] [itemspec2] [options]', 'Displays differences between two local/server files.')
   .command('dir [itemspec] [options]', 'Displays all or some of the contents of the server for Team Foundation version control.')
   .command('folderdiff [targetPath] [options]', 'Displays differences between local/server directories.')
   .command('get [options]', 'Retrieves a read-only copy of files and folders from TFS.')
@@ -40,6 +40,4 @@ program
   .command('workfold [localfolder] [options]', 'Creates, modifies, or displays information about the mappings.')
   .command('workspace [options]', 'Lets you create, delete, view, or modify properties and mappings associated with a workspace.')
   .command('workspaces [options]', 'Displays information about workspaces.')
-;
-
-program.parse(process.argv);
+  .parse(process.argv);

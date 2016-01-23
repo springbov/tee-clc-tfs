@@ -2,11 +2,11 @@
 
 var hasError = false,
     program  = require('commander'),
-    tfsDifference = require('../lib/tfs/difference');
+    tfsDiff  = require('../lib/tfs/diff');
 
 program
   .description('Compares, and if it is possible, displays differences between two files, files in two folders, or a shelveset and a local or a server file.Required PermissionsTo use the difference command, you must have the Read permission for all specified items set to Allow. For more information, see Team Foundation Server Permissions.')
-  .usage('[header.h] [options]')
+  .usage('[itemspec] [itemspec2] [options]')
   .option('-t, --type', 'Required. Specifies the item to be compared. If no version or path is specified, the current workspace version is assumed. Accepts both local and Team Foundation version control server paths. ')
   .option('-v, --version', 'Optional. The item to which the itemspec is to be compared. If you do not provide a second itemspec, the latest Team Foundation version control server version of the item is used. ')
   .option('-f, --format', 'Provides a value for the /type option. You can specify \"binary\" or \"text,\" and a codepage number or the friendly name for a codepage.')
@@ -38,4 +38,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsDifference(program.args, options);
+tfsDiff(program.args, options);
