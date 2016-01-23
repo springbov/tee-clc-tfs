@@ -3,7 +3,6 @@
 var program = require('commander');
 
 program
-  .usage('<command>')
   .command('add [itemspec] [options]', 'Adds files and folders to TFS.')
   .command('branch [olditem] [newitem] [options]', 'Creates a new branch.')
   .command('branches [itemspec] [options]', 'Displays the history of a branch for a specified file or folder.')

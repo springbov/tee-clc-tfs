@@ -19,85 +19,70 @@
 
     npm install -g tfs
 
-### Notes
+## Usage
 
-> For affected commands :
-> - If you omit `[files]`, it will apply on the current directory.
-> - You can use a relative, an absolute or a TFS path.
-> - You can give multiple files/directories separated by a space.
+    Usage: tfs <cmd>
 
 ## Commands
 
-    Usage: tfs <command>
+```
+add [itemspec] [options]                  Adds files and folders to TFS.
+branch [olditem] [newitem] [options]      Creates a new branch.
+branches [itemspec] [options]             Displays the history of a branch for a specified file or folder.
+changeset [options]                       Displays information about and lets you change the attributes, such as comments and check-in.
+checkin [itemspec]                        Commits pending changes in the current workspace to TFS.
+checkout [options]                        Makes the local file writable, and changes its Pending Change status to "edit" in the workspace.
+configure [options]                       Enables an administrator to view and change TFS settings.
+delete [itemspec] [options]               Removes items from TFS and deletes them.
+destroy [options]                         Permanently delete version-controlled files from TFS.
+diff [itemspec] [itemspec2] [options]     Displays differences between two local/server files.
+dir [itemspec] [options]                  Displays all or some of the contents of the server for Team Foundation version control.
+folderdiff [targetPath] [options]         Displays differences between local/server directories.
+get [options]                             Retrieves a read-only copy of files and folders from TFS.
+history [itemspec] [options]              Displays the revision history for one or more files, folders or both.
+label [labelname] [options]               Attaches a label to or removes a label from a TFS file or folder.
+labels [options]                          Displays the list of labels in the server for Team Foundation version control.
+localversions [itemspec] [options]        Displays the version of one or more items in a workspace.
+lock [itemspec] [options]                 Locks or unlocks a file or folder.
+merge [source] [destination] [options]    Applies changes from one branch into another.
+merges [destination] [options]            Displays detailed information about past merges.
+permission [options]                      Modifies the user ACL and displays authorization settings.
+properties [itemspec] [options]           Displays information about items under version control.
+rename [olditem] [newitem] [options]      Rename a file or folder.
+resolve [options]                         Lets you resolve conflicts.
+rollback [itemspec] [options]             Roll back changesets.
+shelve [options]                          Stores a set of pending changes, together with pending check-in.
+shelvesets [shelvesetname] [options]      Displays information about a set of shelved changes.
+status [itemspec] [options]               Displays information about pending changes to items in one or more workspaces.
+undelete [options]                        Restores items that were previously deleted.
+undo [itemspec] [options]                 Removes pending changes from a workspace.
+unlabel [labelname] [itemspec] [options]  Removes an item from an existing label.
+unshelve [itemspec] [options]             Restores shelved file revisions, check-in.
+view [itemspec] [options]                 Retrieves a specific version of a file to a temporary folder on your computer and displays it.
+workfold [localfolder] [options]          Creates, modifies, or displays information about the mappings.
+workspace [options]                       Lets you create, delete, view, or modify properties and mappings associated with a workspace.
+workspaces [options]                      Displays information about workspaces.
+help [cmd]                                display help for [cmd]
+```
 
+## Get more information about each command
 
-    Commands:
+Since `tfs` is a wrapper, it only check and execute commands via `TF.exe` command line tool. So to know how to use each command, just check the [**Tf Command-Line Utility Commands** official documentation](https://msdn.microsoft.com/en-us/library/z51z7zy0.aspx).
 
-      changeset <number> [options]  Changesets information and editing.
-      checkin [files] [options]     Commit pending changes.
-      get [files] [options]         Retrieve a read-only copy of a file.
-      undo [files] [options]        Remove pending changes from a workspace.
-      workspaces [files] [options]  Display information about workspaces.
-      help [cmd]                    display help for [cmd]
+Also don't hesitate to use the `help` command, i.e. :
 
-    Options:
+    tfs help [cmd]
+
+## Options:
 
       -h, --help  output usage information
 
-#### tfs changeset
+### Good to know
 
-    Usage: tfs-changeset <changeset number> [options]
-
-    Options:
-
-      -h, --help     output usage information
-      -V, --verbose  Verbose mode.
-
-#### tfs checkin
-
-    Usage: tfs-checkin [file(s)] [options]
-
-    Options:
-
-      -h, --help               output usage information
-      -a, --author [Author]    Identifies the author of the pending changes so that one user can check in changes on behalf of another user.
-      -b, --bypass             Bypasses a gated check-in requirement.
-      -C, --collection         Specifies the team project collection.
-      -c, --comment [Comment]  Associates a comment with the changeset.
-      -N, --noprompt           Suppresses any prompts for input from you.
-      -n, --notes [Note]       Provides one or more check-in notes to associate with the changeset.
-      -o, --override [Reason]  Lets you override a check-in policy failure.
-      -r, --recursive          Checks in all items in the specified or implied working folder and subfolders.
-      -v, --validate           Lets you test checking in without actually doing it.
-      -V, --verbose            Verbose mode.
-
-#### tfs get
-
-    Usage: tfs-get [file(s)] [options]
-
-    Options:
-
-      -h, --help                       output usage information
-      -r, --recursive                  Recursively retrieves all items that match your file(s).
-      -V, --verbose                    Verbose mode.
-
-#### tfs undo
-
-    Usage: tfs-undo [file(s)] [options]
-
-    Options:
-
-      -h, --help     output usage information
-      -V, --verbose  Verbose mode.
-
-#### tfs workspaces
-
-    Usage: tfs-workspaces [options]
-
-    Options:
-
-      -h, --help     output usage information
-      -V, --verbose  Verbose mode.
+> For `[itemspec]` commands :
+> - If you omit `[itemspec]`, it will apply on the current directory.
+> - You can use a relative, an absolute or a TFS path.
+> - You can give multiple files/directories separated by a space.
 
 ---
 
