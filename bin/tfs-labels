@@ -18,7 +18,8 @@ var options = {
   owner: program.owner,
   format: program.format,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsLabels(program.args, options);

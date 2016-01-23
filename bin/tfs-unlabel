@@ -16,7 +16,8 @@ program
 var options = {
   recursive: program.recursive,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsUnlabel(program.args, options);

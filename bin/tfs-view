@@ -26,7 +26,8 @@ var options = {
   version: program.version,
   collection: program.collection,
   login: program.login,
-  output: program.output
+  output: program.output,
+  verbose: program.verbose
 };
 
 tfsView(program.args, options);

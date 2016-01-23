@@ -24,7 +24,8 @@ var options = {
   cloak: program.cloak,
   decloak: program.decloak,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsWorkfold(program.args, options);

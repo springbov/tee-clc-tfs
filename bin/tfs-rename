@@ -14,7 +14,8 @@ program
 
 var options = {
   lock: program.lock,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsRename(program.args, options);

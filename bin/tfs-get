@@ -28,7 +28,8 @@ var options = {
   recursive: program.recursive,
   noprompt: program.noprompt,
   remap: program.remap,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsGet(program.args, options);

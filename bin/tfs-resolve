@@ -26,7 +26,8 @@ var options = {
   recursive: program.recursive,
   newname: program.newname,
   login: program.login,
-  noprompt: program.noprompt
+  noprompt: program.noprompt,
+  verbose: program.verbose
 };
 
 tfsResolve(program.args, options);

@@ -26,7 +26,8 @@ var options = {
   updateComputerName: program.updateComputerName,
   remove: program.remove,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsWorkspaces(program.args, options);

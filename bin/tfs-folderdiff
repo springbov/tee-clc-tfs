@@ -24,7 +24,8 @@ var options = {
   filterLocalPathsOnly: program.filterLocalPathsOnly,
   view: program.view,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsFolderdiff(program.args, options);

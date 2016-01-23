@@ -26,7 +26,8 @@ var options = {
   silent: program.silent,
   checkin: program.checkin,
   comment: program.comment,
-  author: program.author
+  author: program.author,
+  verbose: program.verbose
 };
 
 tfsBranch(program.args, options);

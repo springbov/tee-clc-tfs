@@ -28,7 +28,8 @@ var options = {
   noprompt: program.noprompt,
   validate: program.validate,
   login: program.login,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsShelve(program.args, options);

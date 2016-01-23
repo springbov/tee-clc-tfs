@@ -22,7 +22,8 @@ var options = {
   folders: program.folders,
   deleted: program.deleted,
   login: program.login,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsDir(program.args, options);

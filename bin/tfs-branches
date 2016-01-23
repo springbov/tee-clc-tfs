@@ -16,7 +16,8 @@ program
 var options = {
   version: program.version,
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsBranches(program.args, options);

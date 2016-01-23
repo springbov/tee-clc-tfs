@@ -26,7 +26,8 @@ var options = {
   noprompt: program.noprompt,
   recursive: program.recursive,
   toversion: program.toversion,
-  version: program.version
+  version: program.version,
+  verbose: program.verbose
 };
 
 tfsRollback(program.args, options);

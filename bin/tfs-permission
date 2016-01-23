@@ -30,7 +30,8 @@ var options = {
   collection: program.collection,
   recursive: program.recursive,
   global: program.global,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsPermission(program.args, options);

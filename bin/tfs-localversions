@@ -18,7 +18,8 @@ var options = {
   format: program.format,
   recursive: program.recursive,
   workspace: program.workspace,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsLocalversions(program.args, options);

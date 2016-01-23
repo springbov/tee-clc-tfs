@@ -34,7 +34,8 @@ var options = {
   shelveset: program.shelveset,
   noprompt: program.noprompt,
   configure: program.configure,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsDifference(program.args, options);

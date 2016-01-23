@@ -18,7 +18,8 @@ var options = {
   lock: program.lock,
   workspace: program.workspace,
   login: program.login,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsLock(program.args, options);

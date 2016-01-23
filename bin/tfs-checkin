@@ -34,7 +34,8 @@ var options = {
   bypass: program.bypass,
   login: program.login,
   shelveset: program.shelveset,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsCheckin(program.args, options);

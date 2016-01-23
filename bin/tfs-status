@@ -24,7 +24,8 @@ var options = {
   shelveset: program.shelveset,
   format: program.format,
   recursive: program.recursive,
-  user: program.user
+  user: program.user,
+  verbose: program.verbose
 };
 
 tfsStatus(program.args, options);

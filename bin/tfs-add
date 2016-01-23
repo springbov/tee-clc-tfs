@@ -20,7 +20,8 @@ var options = {
   lock: program.lock,
   noprompt: program.noprompt,
   recursive: program.recursive,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsAdd(program.args, options);

@@ -18,7 +18,8 @@ var options = {
   move: program.move,
   recursive: program.recursive,
   noprompt: program.noprompt,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsUnshelve(program.args, options);

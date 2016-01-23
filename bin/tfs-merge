@@ -38,7 +38,8 @@ var options = {
   noprompt: program.noprompt,
   conservative: program.conservative,
   format: program.format,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsMerge(program.args, options);

@@ -32,7 +32,8 @@ var options = {
   collection: program.collection,
   permission: program.permission,
   login: program.login,
-  newowner: program.newowner
+  newowner: program.newowner,
+  verbose: program.verbose
 };
 
 tfsWorkspace(program.args, options);

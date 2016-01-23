@@ -14,7 +14,8 @@ program
 
 var options = {
   collection: program.collection,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsConfigure(program.args, options);

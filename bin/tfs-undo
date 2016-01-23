@@ -20,7 +20,8 @@ var options = {
   recursive: program.recursive,
   noprompt: program.noprompt,
   collection : program.collection ,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsUndo(program.args, options);

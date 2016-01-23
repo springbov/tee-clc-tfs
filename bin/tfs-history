@@ -10,6 +10,8 @@ program
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
-var options = {};
+var options = {
+  verbose: program.verbose
+};
 
 tfsHistory(program.args, options);

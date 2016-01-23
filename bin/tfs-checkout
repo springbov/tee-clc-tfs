@@ -18,7 +18,8 @@ var options = {
   type: program.type,
   recursive: program.recursive,
   lock: program.lock,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsCheckout(program.args, options);

@@ -26,7 +26,8 @@ var options = {
   noprompt/i: program.noprompt/i,
   silent: program.silent,
   login: program.login,
-  collection: program.collection
+  collection: program.collection,
+  verbose: program.verbose
 };
 
 tfsDestroy(program.args, options);

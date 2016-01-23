@@ -18,7 +18,8 @@ var options = {
   noget: program.noget,
   lock: program.lock,
   recursive: program.recursive,
-  login: program.login
+  login: program.login,
+  verbose: program.verbose
 };
 
 tfsUndelete(program.args, options);
