@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/debug.js</title>
+    <title>JSDoc: Module: TFS Undo</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,99 +17,236 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/debug.js</h1>
+    <h1 class="page-title">Module: TFS Undo</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>var fileExists   = require('./fileExists'),
-    fs           = require('fs'),
-    SETTINGS     = {},
-    settingsFile = __dirname + '/../../config/settings.json';
+        
+            
+        
+    
+</header>
 
-function path(path) {
-  return path.substr(3).replace(/\\/g, '/');
-}
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Removes pending changes from a workspace.
 
-function cwd(formatted) {
-  return formatted ? path(process.cwd()) : process.cwd();
-}
+<h5>Required Permissions</h5>
+To use the undo command, you must be the owner of the specified workspace
+or have the global Administer workspaces permission set to Allow.</div>
+        
 
-/**
- * [debug description]
- *
- * @version 1.2.3
- *
- * @type {Object}
- */
-var debug = {
-  cwd: cwd,
+        
+            
 
-  getBooleanAssert: function(options) {
-    var bOptions = {},
-    output = '/' + options.b.join(' /');
 
-    options.b.forEach(function(option) {
-      bOptions[option] = true;
-    });
 
-    return {
-      options: bOptions,
-      output:  output
-    };
-  },
 
-  getStringAssert: function(options) {
-    var sOptions = {},
-    output = '/' + options.s.join(':aString /') + ':aString';
 
-    options.s.forEach(function(option) {
-      sOptions[option] = 'aString';
-    });
 
-    return {
-      options: sOptions,
-      output:  output
-    };
-  },
 
-  is: function() {
-    SETTINGS = JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
-    return !!SETTINGS.debug;
-  },
 
-  itemspec: function(formatted) {
-    return cwd(formatted) + '/..';
-  },
 
-  path: path,
 
-  /**
-   * Toggle debugging environment mode
-   *
-   * @param  {Boolean} state
-   */
-  toggle: function(state) {
-    // Switch debug environment to true
-    if (fileExists(settingsFile)) {
-      SETTINGS = JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
-    }
 
-    SETTINGS.debug = state;
+    <h5>Parameters:</h5>
+    
 
-    var fileSource = JSON.stringify(SETTINGS, null, 2);
-    fs.writeFileSync(settingsFile, fileSource, 'utf8');
-  }
-};
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-module.exports = debug;
-</code></pre>
-        </article>
-    </section>
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>itemspec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">File(s) and folder(s) to get latest version of.
+                              If null/undefined, equals CWD.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Undo command options</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>viaApi</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Is this function called via tfs API ?</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.2.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tfs_undo.js.html">tfs/undo.js</a>, <a href="tfs_undo.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://msdn.microsoft.com/en-us/library/c72skhw4.aspx">https://msdn.microsoft.com/en-us/library/c72skhw4.aspx</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: TFS Get</title>
+    <title>JSDoc: Module: TFS Chekout</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: TFS Get</h1>
+    <h1 class="page-title">Module: TFS Chekout</h1>
 
     
 
@@ -38,15 +38,7 @@
     <div class="container-overview">
     
         
-            <div class="description">Retrieves a read-only copy of a file from the server
-for Team Foundation version control to the workspace
-and creates folders on disk to contain it.
-
-<h5>Required Permissions:</h5>
-To use the get command, you must have the Read permission
-set to Allow for every retrieved item
-and you must either own the destination workspace
-or have the global Administer workspaces permission.</div>
+            <div class="description">Makes the local file writable, and changes its Pending Change status to \"edit\" in the workspace. Edit is an alias for the Checkout command. For more information, see Pending Changes.Note   Any edits that you make to items that have been checked out are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the checkout command, your Check out permission must be set to Allow, and you must be either the workspace owner or your global Administer workspaces permission must be set to Allow. Also, if you use the /lock option with a value other than none, your Lock permission must be set to Allow. For more information, see Team Foundation Server Permissions.</div>
         
 
         
@@ -127,7 +119,7 @@ or have the global Administer workspaces permission.</div>
 
             
 
-            <td class="description last">Get command options</td>
+            <td class="description last">Checkout command options</td>
         </tr>
 
     
@@ -194,7 +186,7 @@ or have the global Administer workspaces permission.</div>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tfs_get.js.html">tfs/get.js</a>, <a href="tfs_get.js.html#line5">line 5</a>
+        <a href="tfs_checkout.js.html">tfs/checkout.js</a>, <a href="tfs_checkout.js.html#line5">line 5</a>
     </li></ul></dd>
     
 
@@ -204,7 +196,7 @@ or have the global Administer workspaces permission.</div>
     <dt class="tag-see">See:</dt>
     <dd class="tag-see">
         <ul>
-            <li><a href="https://msdn.microsoft.com/en-us/library/fx7sdeyf.aspx">https://msdn.microsoft.com/en-us/library/fx7sdeyf.aspx</a></li>
+            <li>...</li>
         </ul>
     </dd>
     

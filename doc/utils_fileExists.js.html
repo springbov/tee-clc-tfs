@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/debug.js</title>
+    <title>JSDoc: Source: utils/fileExists.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/debug.js</h1>
+    <h1 class="page-title">Source: utils/fileExists.js</h1>
 
     
 
@@ -26,87 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>var fileExists   = require('./fileExists'),
-    fs           = require('fs'),
-    SETTINGS     = {},
-    settingsFile = __dirname + '/../../config/settings.json';
-
-function path(path) {
-  return path.substr(3).replace(/\\/g, '/');
-}
-
-function cwd(formatted) {
-  return formatted ? path(process.cwd()) : process.cwd();
-}
+            <pre class="prettyprint source linenums"><code>var fs = require('fs');
 
 /**
- * [debug description]
+ * [fileExists description]
+ *
+ * @todo Complete description
  *
  * @version 1.2.3
  *
- * @type {Object}
+ * @param  {String}  filePath    File path
+ * @param  {Boolean} isDirectory Check if it's a directory
+ * @return {Boolean}             Return TRUE if file exists
+ *                               (and is a directory)
  */
-var debug = {
-  cwd: cwd,
+var fileExists = function(filePath, isDirectory) {
+  isDirectory = !!isDirectory;
 
-  getBooleanAssert: function(options) {
-    var bOptions = {},
-    output = '/' + options.b.join(' /');
-
-    options.b.forEach(function(option) {
-      bOptions[option] = true;
-    });
-
-    return {
-      options: bOptions,
-      output:  output
-    };
-  },
-
-  getStringAssert: function(options) {
-    var sOptions = {},
-    output = '/' + options.s.join(':aString /') + ':aString';
-
-    options.s.forEach(function(option) {
-      sOptions[option] = 'aString';
-    });
-
-    return {
-      options: sOptions,
-      output:  output
-    };
-  },
-
-  is: function() {
-    SETTINGS = JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
-    return !!SETTINGS.debug;
-  },
-
-  itemspec: function(formatted) {
-    return cwd(formatted) + '/..';
-  },
-
-  path: path,
-
-  /**
-   * Toggle debugging environment mode
-   *
-   * @param  {Boolean} state
-   */
-  toggle: function(state) {
-    // Switch debug environment to true
-    if (fileExists(settingsFile)) {
-      SETTINGS = JSON.parse(fs.readFileSync(settingsFile, 'utf8'));
+  try {
+    if (isDirectory) {
+      if (fs.lstatSync(filePath).isDirectory()) {
+        return true;
+      }
+    } else {
+      if (fs.lstatSync(filePath).isFile()) {
+        return true;
+      }
     }
 
-    SETTINGS.debug = state;
-
-    var fileSource = JSON.stringify(SETTINGS, null, 2);
-    fs.writeFileSync(settingsFile, fileSource, 'utf8');
+    return false;
+  }
+  catch (exception) {
+    return false;
   }
 };
 
-module.exports = debug;
+module.exports = fileExists;
 </code></pre>
         </article>
     </section>
