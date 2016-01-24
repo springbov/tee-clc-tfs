@@ -2,8 +2,12 @@ var assert = require('assert'),
     debug  = require('../lib/utils/debug'),
     tfs    = require('../lib/tfs');
 
+/**
+ * [describe description]
+ *
+ * @version 1.2.7
+ */
 describe('Start Tests Suite', function() {
-
   before(function() {
     console.log('\n    > Switching debugging environment mode ON\n');
     debug.toggle(true);

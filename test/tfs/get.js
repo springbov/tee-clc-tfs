@@ -2,6 +2,11 @@ var assert = require('assert'),
     debug  = require('../../lib/utils/debug'),
     tfs    = require('../../lib/tfs');
 
+/**
+ * [describe description]
+ *
+ * @version 1.2.7
+ */
 describe('GET Tests Suite', function() {
   var options = {
     b: [

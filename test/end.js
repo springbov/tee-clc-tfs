@@ -1,6 +1,11 @@
 var assert = require('assert'),
     debug  = require('../lib/utils/debug');
 
+/**
+ * [describe description]
+ *
+ * @version 1.2.7
+ */
 describe('End Tests Suite', function() {
   before(function() {
     console.log('\n    > Switching debugging environment mode OFF\n');
