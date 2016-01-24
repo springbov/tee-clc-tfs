@@ -1,16 +1,59 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output  = require('../lib/utils/output'),
     program  = require('commander'),
     tfsHistory = require('../lib/tfs/history');
 
 program
-  .description('Displays the revision history for one or more files, folders or both.Required PermissionsTo use the history command, you must have Read permission set to Allow for all files or folders for which history is requested. For more information, see Team Foundation Server Permissions.')
+  .description('Displays the revision history for one or more files, folders or both.')
   .usage('[itemspec] [options]')
+  .option('-c, --collection <TeamProjectCollectionUrl>', 'Specifies the team project collection.')
+  .option('-f, --format <brief|detailed>', 'Specifies the descriptions displayed for the historical information.', /^brief|detailed$/i)
+  .option('-i, --itemmode', 'Displays the revision history for the specified item that has a unique path.')
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
+  .option('-n, --noprompt', 'Suppresses any prompts for input from you.')
+  .option('-r, --recursive', 'Retrieves historical information about items under the specified path.')
+  .option('-s, --slotmode', 'Displays revision history for all items that have ever occupied the specified namespace location.')
+  .option('-S, --sort <ascending|descending>', 'Sorts the revision history for one or more files or folders.', /^ascending|descending$/i)
+  .option('-A, --stopafter <number>', 'Displays history for the changeset numbers that you specify.', parseInt)
+  .option('-u, --user <username>', 'Filters the list of changes to the named user.')
+  .option('-v, --version <versionspec>', 'Specifies the version of the items for which to display revision history.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
+if (program.format && typeof program.format === 'boolean') {
+  output.error('--format option MUST be <brief|detailed>".');
+  hasError = true;
+}
+
+if (program.login && typeof program.login === 'boolean') {
+  output.error('--login option MUST be <username,[password]>.');
+  hasError = true;
+}
+
+if (program.sort && typeof program.sort === 'boolean') {
+  output.error('--sort option MUST be <ascending|descending>".');
+  hasError = true;
+}
+
+if (hasError) {
+  program.outputHelp();
+  process.exit();
+}
+
 var options = {
+  collection: program.collection,
+  format: program.format,
+  itemmode: program.itemmode,
+  login: program.login,
+  noprompt: program.noprompt,
+  recursive: program.recursive,
+  slotmode: program.slotmode,
+  sort: program.sort,
+  stopafter: program.stopafter,
+  user: program.user,
+  version: program.version,
   verbose: program.verbose
 };
 
