@@ -71,6 +71,10 @@ Since `tfs` is a wrapper, it only check and execute commands via `TF.exe` comman
 
 Also don't hesitate to use the `help` command, i.e. :
 
+    tfs [cmd] -h, --help
+
+Or :
+
     tfs help [cmd]
 
 ## Options:
