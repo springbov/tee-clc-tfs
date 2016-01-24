@@ -25,11 +25,11 @@ describe('CHECKIN Tests Suite', function() {
 
   it('SHOULD works with BOOLEAN options', function () {
     var test = debug.getBooleanAssert(options);
-    assert.equal('checkin "' + debug.cwd(true) + '" ' + test.output, tfs('checkin', null, test.options));
+    assert.equal('checkin "' + debug.cwd(true) + '" ' + test.output, tfs('checkin', null, test.options).message);
   });
 
   it('SHOULD works with STRING options', function () {
     var test = debug.getStringAssert(options);
-    assert.equal('checkin "' + debug.cwd(true) + '" ' + test.output, tfs('checkin', null, test.options));
+    assert.equal('checkin "' + debug.cwd(true) + '" ' + test.output, tfs('checkin', null, test.options).message);
   });
 });

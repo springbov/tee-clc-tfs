@@ -51,16 +51,16 @@ describe('Start Tests Suite', function() {
   commands.forEach(function(command) {
     describe(command.toUpperCase(), function() {
       it('SHOULD use CWD when [items] is NOT specified', function () {
-        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command));
+        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command).message);
       });
       it('SHOULD use CWD when [items] is NULL and [options] is NULL', function () {
-        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command, null, null));
+        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command, null, null).message);
       });
       it('SHOULD use ONE ITEM when 1 [items] IS specified', function () {
-        assert.equal(command + ' "' + debug.itemspec(true) + '"', tfs(command, debug.itemspec()));
+        assert.equal(command + ' "' + debug.itemspec(true) + '"', tfs(command, debug.itemspec()).message);
       });
       it('SHOULD use TWO ITEMS when 2 [items] ARE specified', function () {
-        assert.equal(command + ' "' + debug.itemspec(true) + '" "' + debug.itemspec(true) + '"', tfs(command, debug.itemspec() + ' ' + debug.itemspec()));
+        assert.equal(command + ' "' + debug.itemspec(true) + '" "' + debug.itemspec(true) + '"', tfs(command, debug.itemspec() + ' ' + debug.itemspec()).message);
       });
     });
   });
