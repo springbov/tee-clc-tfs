@@ -18,7 +18,7 @@ program
   .option('-S, --sort <ascending|descending>', 'Sorts the revision history for one or more files or folders.', /^ascending|descending$/i)
   .option('-A, --stopafter <number>', 'Displays history for the changeset numbers that you specify.', parseInt)
   .option('-u, --user <username>', 'Filters the list of changes to the named user.')
-  .option('-v, --version <versionspec>', 'Specifies the version of the items for which to display revision history.')
+  .option('-v, --tfs-version <versionspec>', 'Specifies the version of the items for which to display revision history.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
@@ -53,7 +53,7 @@ var options = {
   sort: program.sort,
   stopafter: program.stopafter,
   user: program.user,
-  version: program.version,
+  version: program.tfsVersion,
   verbose: program.verbose
 };
 
