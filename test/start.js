@@ -19,7 +19,7 @@ describe('Start Tests Suite', function() {
     'branches',
     // 'changeset',
     'checkin',
-    // 'checkout',
+    'checkout',
     // 'configure',
     'delete',
     // 'destroy',

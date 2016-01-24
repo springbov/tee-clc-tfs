@@ -1,25 +1,41 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output  = require('../lib/utils/output'),
     program  = require('commander'),
     tfsCheckout = require('../lib/tfs/checkout');
 
 program
   .description('Makes the local file writable, and changes its status to "edit".')
-  .usage('[options]')
-  .option('-l, --login', 'Manually overrides the file encoding that Team Foundation associates with the specified files.')
-  .option('-L, --lock', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
-  .option('-r, --recursive', 'Specifies one or more files to check out. You can use wildcard characters here.')
-  .option('-t, --type', 'Provides a value for the /type option. Alternatives include the following: Text is an alias for the current windows encoding (Windows-1252 on US systems) or Unicode (based on the BOM, or byte order mark), Binary, and all other file encodings supported by the Windows operating system. You may also use Auto, which detects the type for you. For more information, see Managing File Types.')
+  .usage('[itemspec] [options]')
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
+  .option('-L, --lock <none|checkin|checkout>', 'Prevents other users from checking in or checking out the specified files.', /^(none|checkin|checkout)$/i)
+  .option('-r, --recursive', 'Checks out all files that match the itemspec in the current directory and in all the subfolders of the current directory.')
+  .option('-t, --type <encoding>', 'Provides a value for the /type option.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
+if (program.lock && typeof program.lock === 'boolean') {
+  output.error('--lock option MUST be <none|checkin|checkout>".');
+  hasError = true;
+}
+
+if (program.login && typeof program.login === 'boolean') {
+  output.error('--login option MUST be <username,[password]>.');
+  hasError = true;
+}
+
+if (hasError) {
+  program.outputHelp();
+  process.exit();
+}
+
 var options = {
-  type: program.type,
-  recursive: program.recursive,
   lock: program.lock,
   login: program.login,
+  recursive: program.recursive,
+  type: program.type,
   verbose: program.verbose
 };
 
-tfsCheckout(options);
+tfsCheckout(program.args, options);
