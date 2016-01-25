@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output  = require('../lib/utils/output'),
     program  = require('commander'),
     tfsCheckin = require('../lib/tfs/checkin');
 
@@ -11,7 +12,7 @@ program
   .option('-b, --bypass', 'Bypasses a gated check-in requirement.')
   .option('-c, --collection [TeamProjectCollectionUrl]', 'Specifies the team project collection.')
   .option('-C, --comment [comment]', 'Associates a comment with the changeset.')
-  .option('-l, --login [username,[password]]', 'Specifies the user account to run the command.')
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
   .option('-n, --noprompt', 'Suppresses any prompts for input from you.')
   // .option('-N, --notes', 'Provides one or more check-in notes to associate with the changeset.')
   .option('-o, --override [reason]', 'Override a check-in policy failure.')
@@ -21,6 +22,16 @@ program
   .option('-v, --validate', 'The /validate option lets you test checking in without actually doing it.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
+
+if (program.login && typeof program.login === 'boolean') {
+  output.error('--login option MUST be <username,[password]>.');
+  hasError = true;
+}
+
+if (hasError) {
+  program.outputHelp();
+  process.exit();
+}
 
 var options = {
   author: program.author,

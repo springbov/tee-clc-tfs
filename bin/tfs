@@ -32,7 +32,7 @@ program
   .command('shelvesets [shelvesetname] [options]', 'Displays information about a set of shelved changes.')
   .command('status [itemspec] [options]', 'Displays information about pending changes to items in one or more workspaces.')
   .command('undelete [options]', 'Restores items that were previously deleted.')
-  .command('undo [itemspec] [options]', 'Removes pending changes from a workspace.')
+  .command('undo <itemspec> [options]', 'Removes pending changes from a workspace.')
   .command('unlabel [labelname] [itemspec] [options]', 'Removes an item from an existing label.')
   .command('unshelve [itemspec] [options]', 'Restores shelved file revisions, check-in.')
   .command('view [itemspec] [options]', 'Retrieves a specific version of a file to a temporary folder on your computer and displays it.')

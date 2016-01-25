@@ -1,27 +1,38 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output  = require('../lib/utils/output'),
     program  = require('commander'),
     tfsUndo = require('../lib/tfs/undo');
 
 program
-  .description('RRemoves pending changes from a workspace.')
-  .usage('[itemspec] [options]')
-  .option('-w, --workspace', 'The user-provided value for the /workspace option.')
-  .option('-r, --recursive', 'Specifies the name of the user who created the workspace.')
-  .option('-n, --noprompt', 'The URL of the team project collection that contains files from which you want to remove pending changes (for example, http://myserver:8080/tfs/DefaultCollection).')
-  .option('-c, --collection ', 'Identifies the file or folder from which to remove pending changes. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Options. ')
-  .option('-l, --login', 'Provides a value to the /login option. You can specify a username value as either DOMAIN\\UserName or UserName.')
+  .description('Removes pending changes from a workspace.')
+  .usage('<itemspec> [options]')
+  .option('-c, --collection <TeamProjectCollectionUrl>', 'Specifies the team project collection.')
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.')
+  .option('-n, --noprompt', 'Suppresses any prompts for input from you.')
+  .option('-r, --recursive', 'Recursively undo changes according to the itemspec.')
   .option('-V, --verbose', 'Verbose mode.')
+  .option('-w, --workspace <workspacename[;workspaceowner]>', 'Specifies the name of the workspace in which you want to undo pending changes.')
   .parse(process.argv);
 
+if (program.login && typeof program.login === 'boolean') {
+  output.error('--login option MUST be <username,[password]>.');
+  hasError = true;
+}
+
+if (hasError) {
+  program.outputHelp();
+  process.exit();
+}
+
 var options = {
-  workspace: program.workspace,
-  recursive: program.recursive,
-  noprompt: program.noprompt,
   collection : program.collection ,
   login: program.login,
-  verbose: program.verbose
+  noprompt: program.noprompt,
+  recursive: program.recursive,
+  verbose: program.verbose,
+  workspace: program.workspace
 };
 
 tfsUndo(program.args, options);
