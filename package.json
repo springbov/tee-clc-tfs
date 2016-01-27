@@ -29,7 +29,8 @@
   "homepage": "https://github.com/ivangabriele/tfs#readme",
   "dependencies": {
     "chalk": "^1.1.1",
-    "commander": "^2.9.0"
+    "commander": "^2.9.0",
+    "mocha": "^2.4.4"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
