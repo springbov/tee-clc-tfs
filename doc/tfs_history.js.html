@@ -31,25 +31,51 @@
     tf     = require('../utils/tf');
 
 /**
- * Displays the revision history for one or more files, folders or both.Required PermissionsTo use the history command, you must have Read permission set to Allow for all files or folders for which history is requested. For more information, see Team Foundation Server Permissions.
+ * Displays the revision history for one or more files, folders or both.
  *
- * @param  {Array}  itemspec File(s) or folder(s) to retrieve.
-                             If null/undefined, equals CWD.
- * @param  {Object} options  Command options
+ * &lt;h5>Required Permissions&lt;/h5>
+ * To use the history command, you must have Read permission
+ * set to Allow for all files or folders for which history is requested.
+ *
+ * @summary  Displays the revision history for one or more files, folders or both.
+ * @see      https://msdn.microsoft.com/en-us/library/yxtbh4yh.aspx
+ * @module   TFS History
+ * @version  1.2.7
+ *
+ * @param  {Array}   itemspec File(s) and folder(s) to get latest version of.
+                              If null/undefined, equals CWD.
+ * @param  {Object}  options  History command options
+ * @param  {Boolean} viaApi   Is this function called via tfs API ?
  */
-var history = function(itemspec, options) {
-  var params = format.items(itemspec);
-
-  if (options.verbose) {
-    output.verbose('Command: get ' + params.join(' '));
+var _history = function(itemspec, options, viaApi) {
+  try {
+    var params = format.items(itemspec);
+  }
+  catch (exception) {
+    return output.responseError(exception, true);
   }
 
-  return tf('history', params, function() {
-    output.success('Done, without errors.');
-  }, !!options.verbose);
+
+  params = params.concat(format.options(options));
+
+  if (options.verbose) {
+    output.verbose('Command: TF.exe HISTORY ' + params.join(' '));
+  }
+
+  if (!viaApi) {
+    var callback = function(response) {
+      if (response.isError) {
+        output.error('Aborted due to errors.');
+      } else {
+        output.success('Done.');
+      }
+    };
+  }
+
+  return tf('history', params, callback, !!options.verbose);
 };
 
-module.exports = history;
+module.exports = _history;
 </code></pre>
         </article>
     </section>
@@ -60,13 +86,13 @@ module.exports = history;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Chekout.html">TFS Chekout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#history">history</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%2520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#status">status</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Jan 24 2016 16:13:31 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Feb 28 2016 15:41:39 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

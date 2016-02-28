@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: utils/format.js</title>
+    <title>JSDoc: Module: TFS Checkout</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,101 +17,245 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: utils/format.js</h1>
+    <h1 class="page-title">Module: TFS Checkout</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>'use strict';
+        
+            
+        
+    
+</header>
 
-var fileExists = require('./fileExists');
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description">Makes the local file writable, and changes its Pending Change status
+to \"edit\" in the workspace. Edit is an alias for the Checkout command.
+
+<h5>Note</h5>
+Any edits that you make to items that have been checked out
+are not reflected in the server for Team Foundation version control
+until you perform a check-in operation.
+
+<h5>Required Permissions</h5>
+To use the checkout command, your Check out permission must be set to Allow,
+and you must be either the workspace owner or your global Administer
+workspaces permission must be set to Allow.
+Also, if you use the /lock option with a value other than none,
+your Lock permission must be set to Allow.</div>
+        
+
+        
+            
 
 
-/**
-* Formatting functions
- *
- * @todo Comment format.js functions
- *
- * @type {Object}
- */
-var format = {
-  items: function(itemspec) {
-    if (!itemspec.length) {
-      itemspec.push(format.path(process.cwd()));
-    } else {
-      var i = itemspec.length;
-      while (--i >= 0) {
-        itemspec[i] = format.path(itemspec[i]);
-      }
-    }
 
-    return itemspec;
-  },
 
-  /**
-   * Convert Unix-style command options (-o, --option)
-   * into Windows one (/option). Adapted for TF.exe.
-   *
-   * @see     https://msdn.microsoft.com/en-us/library/z51z7zy0.aspx
-   * @module  Utilities Format
-   * @version 1.2.7
-   *
-   * @param  {Object} options Unix-style options: { options: true|[String] }
-   * @return {Array}          Windows-style options
-   */
-  options: function(options) {
-    let params = [];
 
-    for (let option in options) {
-      if (options[option] &amp;&amp; option !== 'verbose') {
-        let param = '/' + option;
 
-        if (typeof options[option] === 'string') {
-          param = param + ':"' + options[option] + '"';
-        }
 
-        if (typeof options[option] === 'number') {
-          param = param + ':' + options[option];
-        }
 
-        params.push(param);
-      }
-    }
 
-    return params;
-  },
 
-  path: function(path) {
-    if (path[0] !== '$') {
-      if (path[1] !== ':' &amp;&amp; path[0] !== '/') {
-        if (path.substr(0, 2) === '.\\' || path.substr(0, 2) === './') {
-          path = path.substr(2);
-        }
 
-        if (!fileExists(process.cwd() + '/' + path)) {
-          throw 'The file/directory « ' + process.cwd() + '/' + path + ' » does not exist.';
-        }
+    <h5>Parameters:</h5>
+    
 
-        path = process.cwd() + '/' + path;
-      }
-    }
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
-    return '"' + path.replace(/\\/g, '/') + '"';
-  },
+        <th>Type</th>
 
-  text: function(text) {
-    return '"' + text.replace(/"/g, '""') + '"';
-  },
-};
+        
 
-module.exports = format;
-</code></pre>
-        </article>
-    </section>
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>itemspec</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Array</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">File(s) and folder(s) to get latest version of.
+                              If null/undefined, equals CWD.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Checkout command options</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>viaApi</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Is this function called via tfs API ?</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-version">Version:</dt>
+    <dd class="tag-version"><ul class="dummy"><li>1.2.7</li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="tfs_checkout.js.html">tfs/checkout.js</a>, <a href="tfs_checkout.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="https://msdn.microsoft.com/en-us/library/1yft8zkw.aspx">https://msdn.microsoft.com/en-us/library/1yft8zkw.aspx</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
