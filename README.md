@@ -120,7 +120,7 @@ If you prefer to use the current directory, you can ommit the second parameter o
 
 #### _items_
 
-    {Array} File(s) (seprated by spaces) or changeset number.
+    {Array} File(s) or changeset number.
             Can be null/undefined to use the current path.
 
 #### _options_
