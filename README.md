@@ -112,7 +112,7 @@ If you prefer to use the current directory, you can ommit the second parameter o
 
 ### tfs description
 
-    tfs(command, items, options);
+    tfs(command, [items, [options]]);
 
 #### _command_
 
@@ -120,8 +120,8 @@ If you prefer to use the current directory, you can ommit the second parameter o
 
 #### _items_
 
-    {String} File(s) (seprated by spaces) or changeset number.
-             Can be null/undefined to use the current path.
+    {Array} File(s) (seprated by spaces) or changeset number.
+            Can be null/undefined to use the current path.
 
 #### _options_
 
