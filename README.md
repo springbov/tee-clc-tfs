@@ -13,7 +13,7 @@
 
 > If you're a NodeJS developer whishing to use it as a dependency,
 > there is a module exposing all commands and described in the
-> [NodeJS integration part](#nodejs-integration).
+> [NodeJS API](#nodejs-api).
 
 ### Installation
 
@@ -90,7 +90,7 @@ Or :
 
 ---
 
-## NodeJS integration
+## NodeJS API
 
 You can install **tfs** as a dependency for your NodeJS projects :
 
