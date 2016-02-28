@@ -14,5 +14,6 @@ node_modules
 /config/*.json
 
 # Development files
+/test.js
 /commands
 /get.js
