@@ -41,7 +41,7 @@ describe('Start Tests Suite', function() {
     // 'rollback',
     // 'shelve',
     // 'shelvesets',
-    'status',
+    // 'status',
     // 'undelete',
     'undo',
     // 'unlabel',
