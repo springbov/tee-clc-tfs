@@ -5,7 +5,7 @@ var assert = require('assert'),
 /**
  * [describe description]
  *
- * @version 1.2.7
+ * @version 1.3.0
  */
 describe('HISTORY Tests Suite', function() {
   var options = {
@@ -30,16 +30,16 @@ describe('HISTORY Tests Suite', function() {
 
   it('SHOULD works with BOOLEAN options', function () {
     var test = debug.getBooleanAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).message);
+    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
   });
 
   it('SHOULD works with INTEGER options', function () {
     var test = debug.getIntegerAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).message);
+    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
   });
 
   it('SHOULD works with STRING options', function () {
     var test = debug.getStringAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).message);
+    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
   });
 });
