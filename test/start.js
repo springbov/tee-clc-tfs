@@ -5,6 +5,8 @@ var assert = require('assert'),
 /**
  * [describe description]
  *
+ * @todo Test async status command
+ *
  * @version 1.3.0
  */
 describe('Start Tests Suite', function() {
