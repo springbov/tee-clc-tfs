@@ -1,9 +1,5 @@
 # TFS Tasks List
 
-**lib/tfs.js**
-
-- Stop repeating default calback function for non-API calls
-
 **lib/tfs/checkin.js**
 
 - Implement [/notes:"Note Name"="note text"] in tfs-checkin

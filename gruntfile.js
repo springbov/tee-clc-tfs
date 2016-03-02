@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     githooks: {
       all: {
         'pre-commit': {
-          taskNames: 'lint test todos'
+          taskNames: 'lint test'
         }
       }
     },
