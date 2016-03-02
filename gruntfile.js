@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     githooks: {
       all: {
         'pre-commit': {
-          taskNames: 'lint test'
+          taskNames: 'lint test todos'
         }
       }
     },
@@ -33,6 +33,37 @@ module.exports = function(grunt) {
           'test/end.js'
         ]
       }
+    },
+    todos: {
+      'TODO.md': [
+          'lib/**/*.js',
+          'test/**/*.js'
+      ],
+      options: {
+        priorities : {
+            low : null,
+            med : /\b@?todo\s/,
+            high: null
+        },
+        reporter: {
+          header: function () {
+            return '# TFS Tasks List';
+          },
+          fileTasks: function (file, tasks) {
+            if (!tasks.length) {
+              return '';
+            }
+
+            var result = '\n\n**' + file + '**\n';
+            tasks.forEach(function (task) {
+              result += '\n- ' + task.line.substr(task.line.indexOf('@todo') + 6);
+            });
+
+            return result;
+          }
+        },
+        verbose: false
+      }
     }
   });
 
@@ -40,6 +71,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-githooks');
   grunt.loadNpmTasks('grunt-jsdoc');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-todos');
 
   grunt.registerTask('doc', ['jshint:dist', 'jsdoc:dist']);
   grunt.registerTask('lint', 'jshint:dist');
