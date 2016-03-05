@@ -24,13 +24,13 @@ describe('GET Tests Suite', function() {
     ]
   };
 
-  it('SHOULD works with BOOLEAN options', function () {
-    var test = debug.getBooleanAssert(options);
-    assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options).command);
-  });
-
-  it('SHOULD works with STRING options', function () {
-    var test = debug.getStringAssert(options);
-    assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options).command);
-  });
+  // it('SHOULD works with BOOLEAN options', function () {
+  //   var test = debug.getBooleanAssert(options);
+  //   assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options).command);
+  // });
+  //
+  // it('SHOULD works with STRING options', function () {
+  //   var test = debug.getStringAssert(options);
+  //   assert.equal('get "' + debug.cwd(true) + '" ' + test.output, tfs('get', null, test.options).command);
+  // });
 });

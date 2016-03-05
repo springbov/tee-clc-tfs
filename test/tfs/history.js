@@ -28,18 +28,18 @@ describe('HISTORY Tests Suite', function() {
     ]
   };
 
-  it('SHOULD works with BOOLEAN options', function () {
-    var test = debug.getBooleanAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
-  });
-
-  it('SHOULD works with INTEGER options', function () {
-    var test = debug.getIntegerAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
-  });
-
-  it('SHOULD works with STRING options', function () {
-    var test = debug.getStringAssert(options);
-    assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
-  });
+  // it('SHOULD works with BOOLEAN options', function () {
+  //   var test = debug.getBooleanAssert(options);
+  //   assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
+  // });
+  //
+  // it('SHOULD works with INTEGER options', function () {
+  //   var test = debug.getIntegerAssert(options);
+  //   assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
+  // });
+  //
+  // it('SHOULD works with STRING options', function () {
+  //   var test = debug.getStringAssert(options);
+  //   assert.equal('history "' + debug.cwd(true) + '" ' + test.output, tfs('history', null, test.options).command);
+  // });
 });
