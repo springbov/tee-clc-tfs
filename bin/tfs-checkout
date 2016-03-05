@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var hasError = false,
-    output  = require('../lib/utils/output'),
-    program  = require('commander'),
+var hasError    = false,
+    output      = require('../lib/utils/output'),
+    program     = require('commander'),
     tfsCheckout = require('../lib/tfs/checkout');
 
 program
