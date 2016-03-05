@@ -2,8 +2,7 @@
 **NodeJS wrapper for TFS command line tool.**
 
 [![Build Status](https://travis-ci.org/ivangabriele/tfs.svg?branch=master)](https://travis-ci.org/ivangabriele/tfs)
-[![NPM Version](https://img.shields.io/npm/v/tfs.svg?style=flat)](https://www.npmjs.org/package/tfs)
-[![NPM Downloads](https://img.shields.io/npm/dm/tfs.svg?style=flat)](https://www.npmjs.org/package/tfs)
+[![npm version](https://badge.fury.io/js/tfs.svg)](https://badge.fury.io/js/tfs)
 [![Dependency Status](https://david-dm.org/ivangabriele/tfs.svg)](https://david-dm.org/ivangabriele/tfs)
 [![devDependency Status](https://david-dm.org/ivangabriele/tfs/dev-status.svg)](https://david-dm.org/ivangabriele/tfs#info=devDependencies)
 
