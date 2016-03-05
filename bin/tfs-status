@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-var hasError = false,
-    program  = require('commander'),
+var hasError  = false,
+    output    = require('../lib/utils/output'),
+    program   = require('commander'),
     tfsStatus = require('../lib/tfs/status');
 
 program
@@ -28,4 +29,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsStatus(program.args, options);
+tfsStatus(program.args, options, output.callback);
