@@ -125,12 +125,22 @@ you could write the following code :
     var tfs = require('tfs');
 
     var callback = function(responseError, response) {
+      if (responseError) {
+        console.error(responseError.error);
+        return;
+      }
 
+      console.log(response.message);
     }
 
     tfs('status', 'D:/MyProject/MyBranch', {
       recursive: true
     }, callback);
+
+#### Asynchronous commands
+
+Some commands, like **status**, have extra-properties in their response.
+To get real-life examples of common commands, check [this Github directory](https://github.com/ivangabriele/vscode-tfs/tree/master/lib/tfs).
 
 ### tfs description
 
