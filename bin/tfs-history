@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var hasError = false,
-    output  = require('../lib/utils/output'),
-    program  = require('commander'),
+var hasError   = false,
+    output     = require('../lib/utils/output'),
+    program    = require('commander'),
     tfsHistory = require('../lib/tfs/history');
 
 program
@@ -57,4 +57,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsHistory(program.args, options);
+tfsHistory(program.args, options, output.callback);

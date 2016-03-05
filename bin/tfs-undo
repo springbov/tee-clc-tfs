@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
 var hasError = false,
-    output  = require('../lib/utils/output'),
+    output   = require('../lib/utils/output'),
     program  = require('commander'),
-    tfsUndo = require('../lib/tfs/undo');
+    tfsUndo  = require('../lib/tfs/undo');
 
 program
   .description('Removes pending changes from a workspace.')
@@ -35,4 +35,4 @@ var options = {
   workspace: program.workspace
 };
 
-tfsUndo(program.args, options);
+tfsUndo(program.args, options, output.callback);

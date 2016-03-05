@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output   = require('../lib/utils/output'),
     program  = require('commander'),
-    tfsGet = require('../lib/tfs/get');
+    tfsGet   = require('../lib/tfs/get');
 
 program
   .description('Get the latest version of files and folders.')
@@ -32,4 +33,4 @@ var options = {
   version: program.tfsVersion
 };
 
-tfsGet(program.args, options);
+tfsGet(program.args, options, output.callback);

@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var hasError = false,
-    output  = require('../lib/utils/output'),
-    program  = require('commander'),
+var hasError   = false,
+    output     = require('../lib/utils/output'),
+    program    = require('commander'),
     tfsCheckin = require('../lib/tfs/checkin');
 
 program
@@ -49,4 +49,4 @@ var options = {
   verbose: program.verbose
 };
 
-tfsCheckin(program.args, options);
+tfsCheckin(program.args, options, output.callback);
