@@ -30,6 +30,7 @@ module.exports = function(grunt) {
         src: [
           'test/start.js',
           'test/tfs/*.js',
+          'test/utils/*.js',
           'test/end.js'
         ]
       }
