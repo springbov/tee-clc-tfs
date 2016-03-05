@@ -18,19 +18,15 @@
 
 **lib/utils/format.js**
 
-- Comment format.js functions
+- Missing camelization of initials
+- Missing test
+- Missing test
+- Missing description
+- Missing test
 
 **lib/utils/output.js**
 
 - Comment output.js
-
-**lib/utils/tf.js**
-
-- A 1.4 version with a full async spawn management based on callbacks
-
-**lib/utils/tfSync.js**
-
-- A 2.0 version with a full removal of execSync
 
 **test/start.js**
 
