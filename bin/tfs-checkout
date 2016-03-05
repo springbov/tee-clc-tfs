@@ -8,10 +8,10 @@ var hasError    = false,
 program
   .description('Makes the local file writable, and changes its status to "edit".')
   .usage('[itemspec] [options]')
-  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
   .option('-L, --lock <none|checkin|checkout>', 'Prevents other users from checking in or checking out the specified files.', /^(none|checkin|checkout)$/i)
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
   .option('-r, --recursive', 'Checks out all files that match the itemspec in the current directory and in all the subfolders of the current directory.')
-  .option('-t, --type <encoding>', 'Provides a value for the /type option.')
+  // .option('-t, --type <encoding>', 'Ignore this parameter.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
@@ -34,7 +34,7 @@ var options = {
   lock: program.lock,
   login: program.login,
   recursive: program.recursive,
-  type: program.type,
+  // type: program.type,
   verbose: program.verbose
 };
 

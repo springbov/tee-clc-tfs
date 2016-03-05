@@ -1,27 +1,45 @@
 #!/usr/bin/env node
 
 var hasError = false,
+    output   = require('../lib/utils/output'),
     program  = require('commander'),
-    tfsAdd = require('../lib/tfs/add');
+    tfsAdd   = require('../lib/tfs/add');
 
 program
   .description('Adds files and folders from a local file system to a server for Team Foundation version control.Note   The results of this command are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the add command, you must own the workspace and your Check out permission for the parent folder of the new items must be set to Allow. Your Lock permission must also be set to Allow if you use /lock:checkout or /lock:checkin. For more information, see Team Foundation Server Permissions.')
   .usage('[itemspec] [options]')
-  .option('-t, --type', 'Identifies the files or folders to add. For more information about how Team Foundation parses itemspecs to determine which items are within scope, see Command-Line Syntax (Version Control).')
-  .option('-l, --lock', 'Used with the /type option. For more information, see Managing File Types.')
-  .option('-n, --noprompt', 'Provides a value to the /login option. You can specify a username value as either Domain\\UserName or UserName.')
-  .option('-r, --recursive', 'Overrides file type matching and adds files to the Team Foundation version control server that uses the specified type. For more information, see Managing File Types.')
-  .option('-l, --login', 'Specifies a lock type or removes a lock from an item.')
+  .option('-L, --lock <none|checkin|checkout>', 'Prevents other users from checking in or checking out the specified files.', /^(none|checkin|checkout)$/i)
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
+  .option('-N, --noignore', 'Overrides .tfignore rule(s) ignoring this itemspec.')
+  .option('-n, --noprompt', 'Suppresses the display of windows and dialog boxes and redirects output data to the command prompt.')
+  .option('-r, --recursive', 'Recursively adds items in the specified directory and any subdirectories.')
+  // .option('-t, --encoding <filetype>', 'Ignore this parameter.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 
+if (program.lock && typeof program.lock === 'boolean') {
+  output.error('--lock option MUST be <none|checkin|checkout>".');
+  hasError = true;
+}
+
+if (program.login && typeof program.login === 'boolean') {
+  output.error('--login option MUST be <username,[password]>.');
+  hasError = true;
+}
+
+if (hasError) {
+  program.outputHelp();
+  process.exit();
+}
+
 var options = {
-  type: program.type,
   lock: program.lock,
+  login: program.login,
+  noignore: program.noignore,
   noprompt: program.noprompt,
   recursive: program.recursive,
-  login: program.login,
+  // type: program.type,
   verbose: program.verbose
 };
 
-tfsAdd(program.args, options);
+tfsAdd(program.args, options, output.callback);
