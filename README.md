@@ -100,7 +100,7 @@ You can install **tfs** as a dependency for your NodeJS projects :
 #### Synchronous commands
 
 > All commands excepted **checkout** and **status** are executed synchronously.
-> From version 1.4, they will all become asynchonous to be able to catch original output errors.
+> From version 1.4.0, they will all become asynchonous to be able to catch original output errors.
 
 To recursively get latest files within D:\MyBranch\MyProject and D:/MyOtherProject/MyOtherBranch,
 admitting that this project is source-versionned via TFS,
@@ -116,7 +116,10 @@ If you prefer to use the current directory, you can ommit the second parameter o
 
 #### Asynchronous commands
 
->> Only for **checkout** and **status**.
+Only for **checkout** and **status** commands (until v1.4.0).
+
+> Some commands, like **status**, have extra-properties in their response.<br>
+> To get real-life examples of common commands, check [this Github directory](https://github.com/ivangabriele/vscode-tfs/tree/master/lib/tfs).
 
 To recursively get the status (pending changes) of files within D:\MyBranch\MyProject,
 admitting that this project is source-versionned via TFS,
@@ -131,16 +134,12 @@ you could write the following code :
       }
 
       console.log(response.message);
+      console.log(response.status);
     }
 
     tfs('status', 'D:/MyProject/MyBranch', {
       recursive: true
     }, callback);
-
-#### Asynchronous commands
-
-Some commands, like **status**, have extra-properties in their response.
-To get real-life examples of common commands, check [this Github directory](https://github.com/ivangabriele/vscode-tfs/tree/master/lib/tfs).
 
 ### tfs description
 
