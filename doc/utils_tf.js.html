@@ -30,14 +30,9 @@
     SETTINGS = require('../setup')();
 
 /**
- * Run TFS a command via the TFS command line tool
+ * Run asynchronously a TFS command via the TFS command line tool
  *
- * @todo Manage stderr and exceptions for spawn case
- * @todo Manage stdout data in status command instead of here
- * @todo A 1.4 version with a full async spawn management based on callbacks
- * @todo A 2.0 version with a full removal of execSync
- *
- * @version 1.3.0
+ * @version 1.3.2
  *
  * @param  {String}   command   TFS command
  * @param  {Array}    args      TFS command arguments
@@ -61,83 +56,43 @@ var tf = function(command, args, callback, isVerbose) {
     if (isVerbose) {
       output.debug('"' + SETTINGS.tfPath + '" ' + args.join(' '));
     }
-  } else {
-    var cp = require('child_process');
 
-    try {
-      if (command === 'status') {
-        var spawn = require('child_process').spawn;
-        var batch = spawn(SETTINGS.tfPath, args);
-        var stderr = '',
-            stdout = '';
+    return;
+  }
 
-        batch.stdout.on('data', function(data) {
-          stdout += data.toString();
-        });
+  var response,
+      stderr = '',
+      stdout = '';
 
-        batch.stderr.on('data', function(error) {
-          console.log(error.toString());
-        });
+  try {
+    var batch = require('child_process').spawn(SETTINGS.tfPath, args);
 
-        batch.on('close', function() {
-          var lineRegexp = /(.+)\r\n/g,
-              statusRegexp = /(.*)(add|edit)(.*)/,
-              summaryRegexp = /change\(s\)/,
-              result,
-              status = {
-                detectedChanges: [],
-                includedChanges: []
-              },
-              statusProperty = 'includedChanges';
+    batch.stdout.on('data', function(data) {
+      stdout += data.toString();
+    });
 
-          while ((result = lineRegexp.exec(stdout)) !== null) {
-            if (result[1][0] !== '-' &amp;&amp; result[1].substr(0, 9) !== 'File name' &amp;&amp; result[1][0] !== '$' &amp;&amp; !summaryRegexp.test(result[1])) {
-              if (result[1] === 'Detected Changes:') {
-                statusProperty = 'detectedChanges';
-              } else {
-                var lineResults = statusRegexp.exec(result[1]);
-                status[statusProperty].push({
-                  fileName: lineResults[1].trim(),
-                  action: lineResults[2].trim(),
-                  filePath: lineResults[3].trim()
-                });
-              }
-            }
-          }
+    batch.stderr.on('data', function(data) {
+      stderr += data.toString();
+    });
 
-          if (callback) {
-            var response = output.response('OK', {
-              command: args.join(' '),
-              status:  status
-            });
-
-            callback(response);
-          }
-
-          return;
-        });
-      } else {
-        var execOptions = {
-          stdio: [0, 1, 2],
-        };
-
-        cp.execSync('"' + SETTINGS.tfPath + '" ' + args.join(' '), execOptions);
+    batch.on('close', function() {
+      if (stderr) {
+        callback(output.responseError(stderr.trim()));
+        return;
       }
-    }
-    catch (error) {
-      return output.responseError(error, true);
-    }
+
+      response = output.response('OK', {
+        command: args.join(' '),
+        stderr:  stderr,
+        stdout:  stdout
+      });
+
+      callback(null, response);
+    });
   }
-
-  var response = output.response('OK', {
-    command: args.join(' ')
-  });
-
-  if (callback) {
-    callback(response);
+  catch (error) {
+    callback(output.responseError(error));
   }
-
-  return response;
 };
 
 module.exports = tf;
@@ -151,13 +106,13 @@ module.exports = tf;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%252520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Add.html">TFS Add</a></li><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Info.html">TFS Info</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%2520Camelize.html">Utilities Camelize</a></li><li><a href="module-Utilities%2520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 01 2016 00:52:23 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 06 2016 00:07:41 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -27,7 +27,6 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>var format = require('../utils/format'),
-    output = require('../utils/output'),
     tf     = require('../utils/tf');
 
 /**
@@ -40,36 +39,16 @@
  * @summary  Removes pending changes from a workspace.
  * @see      https://msdn.microsoft.com/en-us/library/c72skhw4.aspx
  * @module   TFS Undo
- * @version  1.2.9
+ * @version  1.4.0
  *
- * @param  {Array}   itemspec File(s) and folder(s) to get latest version of.
-                              If null/undefined, equals CWD.
- * @param  {Object}  options  Undo command options
- * @param  {Boolean} viaApi   Is this function called via tfs API ?
+ * @param  {Array}    itemspec File(s) and folder(s) to get latest version of.
+ *                             If empty, equals CWD.
+ * @param  {Object}   options  Undo command options
+ * @param  {Function} callback Function to call back once executed
  */
-var undo = function(itemspec, options, viaApi) {
-  try {
-    var params = format.items(itemspec);
-  }
-  catch (exception) {
-    return output.responseError(exception, true);
-  }
-
+var undo = function(itemspec, options, callback) {
+  var params = itemspec.length ? itemspec : [process.cwd()];
   params = params.concat(format.options(options));
-
-  if (options.verbose) {
-    output.verbose('Command: TF.exe UNDO ' + params.join(' '));
-  }
-
-  if (!viaApi) {
-    var callback = function(response) {
-      if (response.isError) {
-        output.error('Aborted due to errors.');
-      } else {
-        output.success('Done.');
-      }
-    };
-  }
 
   return tf('undo', params, callback, !!options.verbose);
 };
@@ -85,13 +64,13 @@ module.exports = undo;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%252520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Add.html">TFS Add</a></li><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Info.html">TFS Info</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%2520Camelize.html">Utilities Camelize</a></li><li><a href="module-Utilities%2520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 01 2016 00:52:23 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 06 2016 00:07:41 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

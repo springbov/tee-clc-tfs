@@ -232,7 +232,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_format.js.html">utils/format.js</a>, <a href="utils_format.js.html#line12">line 12</a>
+        <a href="utils_format.js.html">utils/format.js</a>, <a href="utils_format.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -240,13 +240,6 @@
 
     
 
-    
-    <dt class="tag-todo">To Do:</dt>
-    <dd class="tag-todo">
-        <ul>
-            <li>Comment format.js functions</li>
-        </ul>
-    </dd>
     
 </dl>
 
@@ -286,7 +279,7 @@
 
     
     <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>1.3.0</li></ul></dd>
+    <dd class="tag-version"><ul class="dummy"><li>1.3.2</li></ul></dd>
     
 
     
@@ -473,161 +466,6 @@
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="tfs_delete.js.html">tfs/delete.js</a>, <a href="tfs_delete.js.html#line12">line 12</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="add"><span class="type-signature"></span>add<span class="signature">(itemspec, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Adds files and folders from a local file system to a server for Team Foundation version control.Note   The results of this command are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the add command, you must own the workspace and your Check out permission for the parent folder of the new items must be set to Allow. Your Lock permission must also be set to Allow if you use /lock:checkout or /lock:checkin. For more information, see Team Foundation Server Permissions.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>itemspec</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">File(s) or folder(s) to retrieve.
-                             If null/undefined, equals CWD.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Command options</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tfs_add.js.html">tfs/add.js</a>, <a href="tfs_add.js.html#line12">line 12</a>
     </li></ul></dd>
     
 
@@ -1367,7 +1205,7 @@
 
 
 <div class="description">
-    Use the tf destroy command to destroy, or permanently delete, version-controlled files from Team Foundation version control. The destroy action cannot be reversed. You must not destroy files that are still needed. Sometimes you have to clean up version control systems. For example, if some files are infected with a computer virus, you have to remove them permanently from version control.Before you run tf destroy without the /keephistory option, we recommend that you first delete the files you want to destroy. For more information, see Delete Files and Folders from Version Control.After you delete the files you can synchronize the Team Foundation warehouse. Otherwise, the warehouse will not be synchronized with the destroyed items.Required PermissionsTo use the destroy command, you must belong to the Team Foundation Administrators security group. For more information, see Team Foundation Server Permissions.
+    Use the tfSync destroy command to destroy, or permanently delete, version-controlled files from Team Foundation version control. The destroy action cannot be reversed. You must not destroy files that are still needed. Sometimes you have to clean up version control systems. For example, if some files are infected with a computer virus, you have to remove them permanently from version control.Before you run tf destroy without the /keephistory option, we recommend that you first delete the files you want to destroy. For more information, see Delete Files and Folders from Version Control.After you delete the files you can synchronize the Team Foundation warehouse. Otherwise, the warehouse will not be synchronized with the destroyed items.Required PermissionsTo use the destroy command, you must belong to the Team Foundation Administrators security group. For more information, see Team Foundation Server Permissions.
 </div>
 
 
@@ -3251,161 +3089,6 @@
 
     
 
-    <h4 class="name" id="properties"><span class="type-signature"></span>properties<span class="signature">(itemspec, options)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-<div class="description">
-    Displays information about items under version control.Required PermissionsTo use the properties command, you must have the Read permission set to Allow for all specified files and folders. For more information, see Team Foundation Server Permissions.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>itemspec</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">File(s) or folder(s) to retrieve.
-                             If null/undefined, equals CWD.</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>options</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">Command options</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="tfs_properties.js.html">tfs/properties.js</a>, <a href="tfs_properties.js.html#line12">line 12</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
     <h4 class="name" id="rename"><span class="type-signature"></span>rename<span class="signature">(itemspec, options)</span><span class="type-signature"></span></h4>
 
     
@@ -4295,7 +3978,7 @@
 
 
 <div class="description">
-    Run TFS a command via the TFS command line tool
+    Run asynchronously a TFS command via the TFS command line tool
 </div>
 
 
@@ -4432,7 +4115,7 @@
 
     
     <dt class="tag-version">Version:</dt>
-    <dd class="tag-version"><ul class="dummy"><li>1.3.0</li></ul></dd>
+    <dd class="tag-version"><ul class="dummy"><li>1.3.2</li></ul></dd>
     
 
     
@@ -4460,7 +4143,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="utils_tf.js.html">utils/tf.js</a>, <a href="utils_tf.js.html#line21">line 21</a>
+        <a href="utils_tf.js.html">utils/tf.js</a>, <a href="utils_tf.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -4468,19 +4151,6 @@
 
     
 
-    
-    <dt class="tag-todo">To Do:</dt>
-    <dd class="tag-todo">
-        <ul>
-            <li>Manage stderr and exceptions for spawn case</li>
-        
-            <li>Manage stdout data in status command instead of here</li>
-        
-            <li>A 1.4 version with a full async spawn management based on callbacks</li>
-        
-            <li>A 2.0 version with a full removal of execSync</li>
-        </ul>
-    </dd>
     
 </dl>
 
@@ -4526,7 +4196,7 @@
 
     
 
-    <h4 class="name" id="tfs"><span class="type-signature"></span>tfs<span class="signature">(command, items, callback, callback)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="tfs"><span class="type-signature"></span>tfs<span class="signature">(command, items, options, callback)</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -4615,7 +4285,7 @@
 
         <tr>
             
-                <td class="name"><code>callback</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -5847,13 +5517,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%252520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Add.html">TFS Add</a></li><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Info.html">TFS Info</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%2520Camelize.html">Utilities Camelize</a></li><li><a href="module-Utilities%2520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 01 2016 00:52:23 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 06 2016 00:07:41 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

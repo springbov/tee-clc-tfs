@@ -27,27 +27,38 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>var format = require('../utils/format'),
-    output = require('../utils/output'),
     tf     = require('../utils/tf');
 
 /**
- * Adds files and folders from a local file system to a server for Team Foundation version control.Note   The results of this command are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the add command, you must own the workspace and your Check out permission for the parent folder of the new items must be set to Allow. Your Lock permission must also be set to Allow if you use /lock:checkout or /lock:checkin. For more information, see Team Foundation Server Permissions.
+ * Adds files and folders from a local file system to a server
+ * for Team Foundation version control.
  *
- * @param  {Array}  itemspec File(s) or folder(s) to retrieve.
-                             If null/undefined, equals CWD.
- * @param  {Object} options  Command options
+ * &lt;h5>Note&lt;/h5>
+ * The results of this command are not reflected in the server
+ * for Team Foundation version control until you perform a check-in operation.
+ * For more information, see Check In Pending Changes.
+ *
+ * &lt;h5>Required Permissions:&lt;/h5>
+ * To use the add command, you must own the workspace and your Check out
+ * permission for the parent folder of the new items must be set to Allow.
+ * Your Lock permission must also be set to Allow if you use /lock:checkout
+ * or /lock:checkin.
+ *
+ * @summary  Adds files and folders.
+ * @see      https://msdn.microsoft.com/en-us/library/f9yw4ea0.aspx
+ * @module   TFS Add
+ * @version  1.4.0
+ *
+ * @param  {Array}    itemspec File(s) and folder(s) to get latest version of.
+ *                             If empty, equals CWD.
+ * @param  {Object}   options  Checkout command options
+ * @param  {Function} callback Function to call back once executed
  */
-var add = function(itemspec, options) {
-  var params = format.items(itemspec);
+var add = function(itemspec, options, callback) {
+  var params = itemspec.length ? itemspec : [process.cwd()];
   params = params.concat(format.options(options));
 
-  if (options.verbose) {
-    output.verbose('Command: get ' + params.join(' '));
-  }
-
-  return tf('add', params, function() {
-    output.success('Done, without errors.');
-  }, !!options.verbose);
+  return tf('add', params, callback, !!options.verbose);
 };
 
 module.exports = add;
@@ -61,13 +72,13 @@ module.exports = add;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%252520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#add">add</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#properties">properties</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-TFS%2520Add.html">TFS Add</a></li><li><a href="module-TFS%2520Checkin.html">TFS Checkin</a></li><li><a href="module-TFS%2520Checkout.html">TFS Checkout</a></li><li><a href="module-TFS%2520Get.html">TFS Get</a></li><li><a href="module-TFS%2520History.html">TFS History</a></li><li><a href="module-TFS%2520Info.html">TFS Info</a></li><li><a href="module-TFS%2520Status.html">TFS Status</a></li><li><a href="module-TFS%2520Undo.html">TFS Undo</a></li><li><a href="module-Utilities%2520Camelize.html">Utilities Camelize</a></li><li><a href="module-Utilities%2520Format.html">Utilities Format</a></li></ul><h3>Global</h3><ul><li><a href="global.html#_delete">_delete</a></li><li><a href="global.html#branch">branch</a></li><li><a href="global.html#branches">branches</a></li><li><a href="global.html#buildSettings">buildSettings</a></li><li><a href="global.html#changeset">changeset</a></li><li><a href="global.html#configure">configure</a></li><li><a href="global.html#debug">debug</a></li><li><a href="global.html#destroy">destroy</a></li><li><a href="global.html#diff">diff</a></li><li><a href="global.html#dir">dir</a></li><li><a href="global.html#fileExists">fileExists</a></li><li><a href="global.html#folderdiff">folderdiff</a></li><li><a href="global.html#format">format</a></li><li><a href="global.html#label">label</a></li><li><a href="global.html#labels">labels</a></li><li><a href="global.html#localversions">localversions</a></li><li><a href="global.html#lock">lock</a></li><li><a href="global.html#merge">merge</a></li><li><a href="global.html#merges">merges</a></li><li><a href="global.html#output">output</a></li><li><a href="global.html#permission">permission</a></li><li><a href="global.html#rename">rename</a></li><li><a href="global.html#resolve">resolve</a></li><li><a href="global.html#rollback">rollback</a></li><li><a href="global.html#setup">setup</a></li><li><a href="global.html#shelve">shelve</a></li><li><a href="global.html#shelvesets">shelvesets</a></li><li><a href="global.html#tf">tf</a></li><li><a href="global.html#tfs">tfs</a></li><li><a href="global.html#undelete">undelete</a></li><li><a href="global.html#unlabel">unlabel</a></li><li><a href="global.html#unshelve">unshelve</a></li><li><a href="global.html#view">view</a></li><li><a href="global.html#workfold">workfold</a></li><li><a href="global.html#workspace">workspace</a></li><li><a href="global.html#workspaces">workspaces</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Tue Mar 01 2016 00:52:23 GMT+0100 (Romance Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sun Mar 06 2016 00:07:41 GMT+0100 (Romance Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
