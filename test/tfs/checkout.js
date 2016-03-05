@@ -19,13 +19,13 @@ describe('CHECKOUT Tests Suite', function() {
     ]
   };
 
-  it('SHOULD works with BOOLEAN options', function () {
-    var test = debug.getBooleanAssert(options);
-    assert.equal('checkout "' + debug.cwd(true) + '" ' + test.output, tfs('checkout', null, test.options).command);
-  });
-
-  it('SHOULD works with STRING options', function () {
-    var test = debug.getStringAssert(options);
-    assert.equal('checkout "' + debug.cwd(true) + '" ' + test.output, tfs('checkout', null, test.options).command);
-  });
+  // it('SHOULD works with BOOLEAN options', function () {
+  //   var test = debug.getBooleanAssert(options);
+  //   assert.equal('checkout "' + debug.cwd(true) + '" ' + test.output, tfs('checkout', null, test.options).command);
+  // });
+  //
+  // it('SHOULD works with STRING options', function () {
+  //   var test = debug.getStringAssert(options);
+  //   assert.equal('checkout "' + debug.cwd(true) + '" ' + test.output, tfs('checkout', null, test.options).command);
+  // });
 });
