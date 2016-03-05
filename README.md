@@ -66,7 +66,7 @@ help [cmd]                                display help for [cmd]
 
 ## Get more information about each command
 
-Since `tfs` is a wrapper, it only check and execute commands via `TF.exe` command line tool. So to know how to use each command, just check the [**Tf Command-Line Utility Commands** official documentation](https://msdn.microsoft.com/en-us/library/z51z7zy0.aspx).
+Since `tfs` is a wrapper, it only check and execute commands via `TF.exe` command line tool. So to know how to use each command, just check the [**Tf Command-Line Utility Commands** official documentation](https://msdn.microsoft.com/en-us/library/cc31bk2e.aspx).
 
 Also don't hesitate to use the `help` command, i.e. :
 
