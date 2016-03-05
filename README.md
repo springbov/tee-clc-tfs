@@ -97,7 +97,12 @@ You can install **tfs** as a dependency for your NodeJS projects :
 
 ### Usage example
 
-To execute recursively get latest files within D:\MyBranch\MyProject,
+#### Synchronous commands
+
+> All commands excepted **checkout** and **status** are executed synchronously.
+> From version 1.4, they will all become asynchonous to be able to catch original output errors.
+
+To recursively get latest files within D:\MyBranch\MyProject and D:/MyOtherProject/MyOtherBranch,
 admitting that this project is source-versionned via TFS,
 you could write the following code :
 
@@ -105,13 +110,31 @@ you could write the following code :
 
     tfs('get', 'D:/MyProject/MyBranch D:/MyOtherProject/MyOtherBranch', {
       recursive: true
-    })
+    });
 
 If you prefer to use the current directory, you can ommit the second parameter or set it to null.
 
+#### Asynchronous commands
+
+>> Only for **checkout** and **status**.
+
+To recursively get the status (pending changes) of files within D:\MyBranch\MyProject,
+admitting that this project is source-versionned via TFS,
+you could write the following code :
+
+    var tfs = require('tfs');
+
+    var callback = function(responseError, response) {
+
+    }
+
+    tfs('status', 'D:/MyProject/MyBranch', {
+      recursive: true
+    }, callback);
+
 ### tfs description
 
-    tfs(command, [items, [options]]);
+    tfs(command, [items, [options, [callback]]]);
 
 #### _command_
 
@@ -125,3 +148,18 @@ If you prefer to use the current directory, you can ommit the second parameter o
 #### _options_
 
     {Object} TFS command options. Can be null/undefined.
+
+#### _callback_
+
+    {Function} Function to call back once command executed.
+               Will be called back with 2 arguments: error, response.
+
+               error: {
+                 error:   {String},
+                 isError: true
+               }
+
+               response: {
+                 message: {String},
+                 isError: false
+               }
