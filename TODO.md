@@ -26,8 +26,6 @@
 
 **lib/utils/tf.js**
 
-- Manage stderr and exceptions
-- Manage stdout data in status command instead of here
 - A 1.4 version with a full async spawn management based on callbacks
 
 **lib/utils/tfSync.js**
