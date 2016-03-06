@@ -3,11 +3,7 @@ var assert = require('assert'),
     tfs    = require('../lib/tfs');
 
 /**
- * [describe description]
- *
- * @todo Test async status command
- *
- * @version 1.3.0
+ * @version 1.4.1
  */
 describe('Start Tests Suite', function() {
   before(function() {

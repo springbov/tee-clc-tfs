@@ -5,30 +5,27 @@ var assert = require('assert'),
 /**
  * @version 1.4.1
  */
-describe('TFS Get Tests Suite', function() {
+describe('TFS Add Tests Suite', function() {
   var options = {
     b: [
-      'all',
-      'overwrite',
-      'force',
-      'preview',
-      'recursive',
+      'noignore',
       'noprompt',
-      'remap'
+      'recursive'
     ],
     s: [
-      'login',
-      'version'
+      // 'encoding',
+      'lock',
+      'login'
     ]
   };
 
   it('SHOULD works with BOOLEAN options', function () {
     var test = debug.getBooleanAssert(options);
-    assert.equal('get ' + process.cwd() + ' ' + test.output, tfs('get', null, test.options));
+    assert.equal('add ' + process.cwd() + ' ' + test.output, tfs('add', null, test.options));
   });
 
   it('SHOULD works with STRING options', function () {
     var test = debug.getStringAssert(options);
-    assert.equal('get ' + process.cwd() + ' ' + test.output, tfs('get', null, test.options));
+    assert.equal('add ' + process.cwd() + ' ' + test.output, tfs('add', null, test.options));
   });
 });
