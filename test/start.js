@@ -16,20 +16,21 @@ describe('Start Tests Suite', function() {
   });
 
   var commands = [
-    // 'add',
+    'add',
     // 'branch',
     // 'branches',
     // 'changeset',
-    // 'checkin',
-    // 'checkout',
+    'checkin',
+    'checkout',
     // 'configure',
     // 'delete',
     // 'destroy',
     // 'diff',
     // 'dir',
     // 'folderdiff',
-    // 'get',
-    // 'history',
+    'get',
+    'history',
+    'info',
     // 'label',
     // 'labels',
     // 'localversions',
@@ -37,15 +38,14 @@ describe('Start Tests Suite', function() {
     // 'merge',
     // 'merges',
     // 'permission',
-    // 'properties',
     // 'rename',
     // 'resolve',
     // 'rollback',
     // 'shelve',
     // 'shelvesets',
-    // 'status',
+    'status',
     // 'undelete',
-    // 'undo',
+    'undo',
     // 'unlabel',
     // 'unshelve',
     // 'view',
@@ -55,18 +55,21 @@ describe('Start Tests Suite', function() {
   ];
 
   commands.forEach(function(command) {
-    describe(command.toUpperCase(), function() {
+    describe('TFS ' + command[0].toUpperCase() + command.substr(1), function() {
       it('SHOULD use CWD when [items] is NOT specified', function () {
-        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command).command);
+        assert.equal(command + ' ' + process.cwd(), tfs(command));
       });
       it('SHOULD use CWD when [items] is NULL and [options] is NULL', function () {
-        assert.equal(command + ' "' + debug.cwd(true) + '"', tfs(command, null, null).command);
+        assert.equal(command + ' ' + process.cwd(), tfs(command, null, null));
+      });
+      it('SHOULD use CWD when [items] is NULL and [options] is NULL and [callback] is NULL', function () {
+        assert.equal(command + ' ' + process.cwd(), tfs(command, null, null, null));
       });
       it('SHOULD use ONE ITEM when 1 [items] IS specified', function () {
-        assert.equal(command + ' "' + debug.itemspec(true) + '"', tfs(command, [debug.itemspec()]).command);
+        assert.equal(command + ' ' + debug.itemspec(), tfs(command, [debug.itemspec()]));
       });
       it('SHOULD use TWO ITEMS when 2 [items] ARE specified', function () {
-        assert.equal(command + ' "' + debug.itemspec(true) + '" "' + debug.itemspec(true) + '"', tfs(command, [debug.itemspec(true), debug.itemspec(true)]).command);
+        assert.equal(command + ' ' + debug.itemspec() + ' ' + debug.itemspec(), tfs(command, [debug.itemspec(), debug.itemspec()]));
       });
     });
   });
