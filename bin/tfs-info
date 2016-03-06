@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+var hasError = false,
+    output   = require('../lib/utils/output'),
+    program  = require('commander'),
+    tfsInfo  = require('../lib/tfs/info');
+
+program
+  .description('Displays information about items under version control.')
+  .usage('[itemspec] [options]')
+  .option('-c, --collection <TeamProjectCollectionUrl>', 'Specifies the team project collection.')
+  .option('-l, --login <username,[password]>', 'Specifies the user name and password to authenticate the user with Team Foundation Server.', /^[^,]*,/)
+  .option('-r, --recursive', 'Displays all files and subfolders of a folder.')
+  .option('-V, --verbose', 'Verbose mode.')
+  .option('-v, --version <versionspec>', 'Specifies the version of the file to open for viewing the properties on.')
+  .option('-w, --workspace', 'Indicates the workspace to be used when displaying the "local" properties (such as location on disk).')
+  .parse(process.argv);
+
+var options = {
+  verbose: program.verbose
+};
+
+tfsInfo(program.args, options, function(a, b) {
+  console.log(b.info);
+});
+// tfsInfo(program.args, options, output.callback);
