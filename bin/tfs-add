@@ -6,14 +6,13 @@ var hasError = false,
     tfsAdd   = require('../lib/tfs/add');
 
 program
-  .description('Adds files and folders from a local file system to a server for Team Foundation version control.Note   The results of this command are not reflected in the server for Team Foundation version control until you perform a check-in operation. For more information, see Check In Pending Changes.Required PermissionsTo use the add command, you must own the workspace and your Check out permission for the parent folder of the new items must be set to Allow. Your Lock permission must also be set to Allow if you use /lock:checkout or /lock:checkin. For more information, see Team Foundation Server Permissions.')
+  .description('Adds files and folders to version control.')
   .usage('[itemspec] [options]')
-  .option('-L, --lock <none|checkin|checkout>', 'Prevents other users from checking in or checking out the specified files.', /^(none|checkin|checkout)$/i)
-  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
+  .option('-L, --lock <none|checkin|checkout>', 'Prevents other users from checking in or checking out the specified files.')
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.')
   .option('-N, --noignore', 'Overrides .tfignore rule(s) ignoring this itemspec.')
   .option('-n, --noprompt', 'Suppresses the display of windows and dialog boxes and redirects output data to the command prompt.')
   .option('-r, --recursive', 'Recursively adds items in the specified directory and any subdirectories.')
-  // .option('-t, --encoding <filetype>', 'Ignore this parameter.')
   .option('-V, --verbose', 'Verbose mode.')
   .parse(process.argv);
 

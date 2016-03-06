@@ -12,7 +12,7 @@ program
   .option('-b, --bypass', 'Bypasses a gated check-in requirement.')
   .option('-c, --collection [TeamProjectCollectionUrl]', 'Specifies the team project collection.')
   .option('-C, --comment [comment]', 'Associates a comment with the changeset.')
-  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.', /^[^,]*,/)
+  .option('-l, --login <username,[password]>', 'Specifies the user account to run the command.')
   .option('-n, --noprompt', 'Suppresses any prompts for input from you.')
   // .option('-N, --notes', 'Provides one or more check-in notes to associate with the changeset.')
   .option('-o, --override [reason]', 'Override a check-in policy failure.')
