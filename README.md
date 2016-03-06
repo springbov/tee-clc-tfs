@@ -25,12 +25,13 @@
 ## Commands
 
 ```
-add [itemspec] [options]       Adds files and folders to TFS.
+add [itemspec] [options]       Adds files and folders to version control.
 checkin [itemspec] [options]   Commits pending changes in the current workspace.
 checkout [itemspec] [options]  Makes the local file writable, and changes its status to "edit".
 get [itemspec] [options]       Get the latest version of files and folders.
 history [itemspec] [options]   Displays the revision history for one or more files, folders or both.
-status [itemspec] [options]    Displays information about pending changes to items in one or more workspaces.
+info [itemspec] [options]      Displays information about items under version control.
+status [itemspec] [options]    Displays information about pending changes.
 undo <itemspec> [options]      Removes pending changes from a workspace.
 help [cmd]                     Displays help for [cmd].
 ```
