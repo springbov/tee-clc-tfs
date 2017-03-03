@@ -3,8 +3,9 @@
 
 [![Build Status](https://travis-ci.org/ivangabriele/tfs.svg?branch=master)](https://travis-ci.org/ivangabriele/tfs)
 [![npm version](https://badge.fury.io/js/tfs.svg)](https://badge.fury.io/js/tfs)
-[![Dependency Status](https://david-dm.org/ivangabriele/tfs.svg)](https://david-dm.org/ivangabriele/tfs)
-[![devDependency Status](https://david-dm.org/ivangabriele/tfs/dev-status.svg)](https://david-dm.org/ivangabriele/tfs#info=devDependencies)
+[![dependencies Status](https://david-dm.org/ivangabriele/tfs/status.svg)](https://david-dm.org/ivangabriele/tfs)
+[![devDependencies Status](https://david-dm.org/ivangabriele/tfs/dev-status.svg)](https://david-dm.org/ivangabriele/tfs?type=dev)
+[![NSP Status](https://nodesecurity.io/orgs/ivan-gabriele/projects/089c2825-62d5-4283-8342-5ad1629de201/badge)](https://nodesecurity.io/orgs/ivan-gabriele/projects/089c2825-62d5-4283-8342-5ad1629de201)
 
 ---
 
