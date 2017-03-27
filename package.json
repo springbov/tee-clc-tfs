@@ -1,25 +1,28 @@
 {
-  "name": "tfs",
-  "version": "1.4.2",
+  "name": "tee-clc",
+  "version": "1.0.0",
   "description": "NodeJS wrapper for TFS command line tool.",
+  "private": true,
   "main": "lib/tfs.js",
   "bin": {
     "tfs": "./bin/tfs"
   },
   "scripts": {
-    "start": "node ./bin/tfs",
-    "test": "grunt test"
+    "start": "node ./bin/tfs"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ivangabriele/tfs.git"
+    "url": "git+https://github.com/springbov/tfs.git"
   },
   "keywords": [
     "tfs",
     "team",
     "foundation",
     "server",
-    "wrapper"
+    "wrapper",
+    "explorer",
+    "everywhere",
+    "tee-clc"
   ],
   "author": "Ivan Gabriele",
   "license": "MIT",
